@@ -28,7 +28,7 @@ This seed repo serves as an Angular 2 starter for anyone looking to get up and r
 
 ```bash
 # clone our repo
-$ git clone https://github.com/preboot/angular2-webpack.git my-app
+$ git clone https://github.com/chiragbhagat/Angular2Webpack.git my-app
 
 # change directory to your app
 $ cd my-app
