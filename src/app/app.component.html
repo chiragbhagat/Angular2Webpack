@@ -1,0 +1,161 @@
+<div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <a class="navbar-brand" routerLink="" routerLinkActive="active" data-toggle="tooltip" title="Angular2 Web Application Starter">Angular2 Web App</a>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="#menu-toggle" id="menu-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left" style="padding-left:100px;">
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-envelope"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- If Not Authenticated, show below -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a routerLink="/register" routerLinkActive="active" *ngIf="!authService.isLoggedIn">Register</a> </li>
+                <li><a routerLink="/login" routerLinkActive="active" *ngIf="!authService.isLoggedIn">Login</a> </li>
+            </ul>
+            <!-- If Authenticated, show below -->
+            <ul class="nav navbar-nav navbar-right" *ngIf="authService.isLoggedIn">
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hello Demo <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a id="editProfile"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
+                        <li><a id="changePassword"><i class="glyphicon glyphicon-lock"></i> Change Password</a> </li>
+                        <li class="divider"></li>
+                        <li><a (click)="logout()"><i class="glyphicon glyphicon-log-out"></i> Log off</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-bell"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="glyphicon glyphicon-question-sign"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a routerLink="about" routerLinkActive="active">About</a></li>
+                        <li><a routerLink="contact" routerLinkActive="active" >Contact</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div> 
+    <div id="wrapper" style="width:100%">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <a routerLink="home" routerLinkActive="active"><i class="glyphicon glyphicon-home"></i> Dashboard </a>
+                </li>
+                <li>
+                    <a data-toggle="collapse" href="#tables" id="tbl"><i class="glyphicon glyphicon-list"></i> Tables <span class="glyphicon glyphicon-collapse-down"></span></a>
+                    <ul class="panel-collapse collapse" id="tables">
+                        <li><a routerLink="categories" routerLinkActive="active"> Categories</a></li>
+                        <li><a routerLink="products" routerLinkActive="active">Products</a></li>
+                        <li><a routerLink="region" routerLinkActive="active">Region</a></li>
+                        <li><a routerLink="Orders" routerLinkActive="active">Orders</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a data-toggle="collapse" href="#views" id="tbl"><i class="glyphicon glyphicon-list"></i> Views <span class="glyphicon glyphicon-collapse-down"></span></a>
+                    <ul class="panel-collapse collapse" id="views">
+                        <li><a> Alphabeticallistofproducts</a></li>
+                        <li><a> CategorySalesfor1997</a></li>
+                        <li><a> CurrentProductList</a></li>
+                    </ul>
+                </li>
+		        <li class="dropdown">
+			        <a data-toggle="collapse" href="#adminMenu" id="help" *ngIf="authService.isLoggedIn"><i class="glyphicon glyphicon-user"></i> Admin <span class="glyphicon glyphicon-collapse-down"></span></a>
+                    <ul class="panel-collapse collapse" id="adminMenu">
+                        <li><a routerLink="/admin" routerLinkActive="active" >Admin Home</a></li>
+                        <li><a href="/#/UserAdmin">Manage Users</a></li>
+                        <li><a href="/#/RolesAdmin">Manage Roles</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a routerLink="/admin" routerLinkActive="active" *ngIf="authService.isLoggedIn"><i class="glyphicon glyphicon-user"></i> Admin</a>
+                </li>
+                <li>
+                    <a routerLink="/crisis-center" routerLinkActive="active"><i class="glyphicon glyphicon-envelope"></i> Crisis Center</a>
+                </li>
+                <li>
+                    <a routerLink="/heroes" routerLinkActive="active"><i class="glyphicon glyphicon-envelope"></i> Heroes</a>
+                </li>
+                <li><a href="/Help"><i class="glyphicon glyphicon-globe"></i> APIs</a></li>
+                <li>
+                    <a routerLink="/inbox" routerLinkActive="active"><i class="glyphicon glyphicon-envelope"></i> Inbox <span class="badge">42</span></a>
+                </li>
+                <li>
+                    <a routerLink="/graphs" routerLinkActive="active"><i class="glyphicon glyphicon-align-left"></i> Graphs </a>
+                </li>
+                <li>
+                    <a routerLink="/calendar" routerLinkActive="active"><i class="glyphicon glyphicon-calendar"></i> Calendar </a>
+                </li>
+                <li>
+                    <a routerLink="/settings" routerLinkActive="active"><i class="glyphicon glyphicon-cog"></i> Settings </a>
+                </li>
+                <li class="dropdown">
+                    <a data-toggle="collapse" href="#helpMenu" id="help"><i class="glyphicon glyphicon-question-sign"></i> Help <span class="glyphicon glyphicon-collapse-down"></span></a>
+                    <ul class="panel-collapse collapse" id="helpMenu">
+                        <li><a routerLink="/about" routerLinkActive="active" >About</a></li>
+                        <li><a routerLink="/contact" routerLinkActive="active" >Contact</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+    <div id="page-content-wrapper" style="padding:5px;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                            <router-outlet></router-outlet>
+                        <footer style="position:fixed;height:60px;bottom:0;width: 100%;background-color:whitesmoke;padding:10px;">
+                            <p><span>&copy; 2016 [COMPANY_NAME]. All rights reserved. | My Angular2 Web Application </span> </p>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<!--
+<header>
+  <nav>
+    <a [routerLink]="['']">Home</a>
+    <a [routerLink]="['about']">About</a>
+  </nav>
+</header>
+<main>
+  <h1>Hello from {{api.title}}!!!</h1>
+
+  <!-- Images (and assets) are parsed and loaded from within the public directory -->
+  <!--
+  <img src="/img/angular.png">
+
+  <router-outlet></router-outlet>
+</main>
+<footer>
+  <a [href]="url">Webpack Angular 2 Starter</a>
+</footer>
+-->

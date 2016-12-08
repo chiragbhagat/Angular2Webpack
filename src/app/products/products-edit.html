@@ -1,0 +1,96 @@
+<h2>Edit Products</h2>
+<div class="alert alert-danger" *ngIf="errorMessage">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<strong>Error!</strong> {{errorMessage}}
+</div>
+
+<div class="grid grid-pad">
+	<form>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Products Edit</div>
+			<div class="panel-body">
+				<div class="form-horizontal"  *ngIf="objProducts">
+					<div class="row has-error">
+						<span id="error" class="help-block"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Product Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ProductID" name="ProductID" placeholder="Products Id" [(ngModel)]="objProducts.ProductID" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Products Name:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="Product Name" name="ProductName" placeholder="Product Name" [(ngModel)]="objProducts.ProductName" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Supplier Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="SupplierID" name="SupplierID" placeholder="SupplierID" [(ngModel)]="objProducts.SupplierID" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Category Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="CategoryID" name="CategoryID" placeholder="CategoryID" [(ngModel)]="objProducts.CategoryID" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Quantityperunit:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="QuantityPerUnit" name="QuantityPerUnit" placeholder="Quantityperunit" [(ngModel)]="objProducts.QuantityPerUnit" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Unitprice:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="UnitPrice" name="UnitPrice" placeholder="Unitprice" [(ngModel)]="objProducts.UnitPrice" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Unitsinstock:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="UnitsInStock" name="UnitsInStock" placeholder="Unitsinstock" [(ngModel)]="objProducts.UnitsInStock" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Unitsonorder:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="UnitsOnOrder" name="UnitsOnOrder" placeholder="Unitsonorder" [(ngModel)]="objProducts.UnitsOnOrder" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Reorderlevel:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ReorderLevel" name="ReorderLevel" placeholder="Reorderlevel" [(ngModel)]="objProducts.ReorderLevel" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Discontinued:</label>
+						<div class="col-xs-9 col-sm-10">
+							<div class="pull-left">
+								<div class="pull-left">
+									<input id="chkDiscontinued" type="checkbox" ng-model="selectedProducts.Discontinued">
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="panel-footer clearfix">
+				<div class="pull-right">
+					<button class="btn btn-primary" (click)="updateProducts()">Save</button>
+					<a class="btn btn-primary" (click)="gotoProducts()">Cancel</a>
+				</div>
+				<div class="pull-left">
+					<a class="btn btn-danger" (click)="deleteProducts(objProducts.ProductID)">Delete</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+

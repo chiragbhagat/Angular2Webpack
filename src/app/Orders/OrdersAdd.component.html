@@ -1,0 +1,148 @@
+<h2>Add Orders</h2>
+<div class="alert alert-danger" *ngIf="errorMessage">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<strong>Error!</strong> {{errorMessage}}
+</div>
+
+<div *ngIf="false">Is Form Valid: {{ form.valid}}</div>
+<div *ngIf="false">Form Value: {{ form.value | json}}</div>
+
+<div class="container">
+	<form #form="ngForm">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Orders Add</div>
+			<div class="panel-body">
+				<div class="form-horizontal">
+					<div class="row has-error">
+						<span id="error" class="help-block"></span>
+					</div>
+					
+					<div class="form-group" [class.has-error]="OrderID.touched && OrderID.invalid" >
+						<label for="OrderID" class="col-xs-3 col-sm-2 control-label">Order Id:<font color="red">*&nbsp;</font></label>
+						<div class="col-xs-9 col-sm-10">
+							<input #OrderID="ngModel" name="OrderID" type="text" class="form-control" 
+									placeholder="Order Id" [(ngModel)]="objOrders.OrderID" pattern="^(0|[1-9][0-9]*)$" required />
+							<div style="color:red" *ngIf="OrderID.touched && OrderID.invalid">Order Id must be numeric and is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="CustomerID.touched && CustomerID.invalid" >
+						<label for="CustomerID" class="col-xs-3 col-sm-2 control-label">Customer Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #CustomerID="ngModel" name="CustomerID" type="text" class="form-control" 
+									placeholder="Customer Id" [(ngModel)]="objOrders.CustomerID"  />
+							<div style="color:red" *ngIf="CustomerID.touched && CustomerID.invalid">Customer Id is required.</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Employee Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<select id="EmployeeID" name="EmployeeID" class="form-control" [(ngModel)]="objOrders.EmployeeID">
+								<option [value]="objOrders.EmployeeID" *ngIf="!objOrders.EmployeeID">SELECT</option>
+								<option *ngFor="let item of EmployeesList" [value]="item.EmployeeID">
+									{{item.LastName}}
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="OrderDate.touched && OrderDate.invalid" >
+						<label for="OrderDate" class="col-xs-3 col-sm-2 control-label">Order Date:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #OrderDate="ngModel" name="OrderDate" type="text" class="form-control" 
+									placeholder="Order Date" [(ngModel)]="objOrders.OrderDate"  />
+							<div style="color:red" *ngIf="OrderDate.touched && OrderDate.invalid">Order Date is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="RequiredDate.touched && RequiredDate.invalid" >
+						<label for="RequiredDate" class="col-xs-3 col-sm-2 control-label">Required Date:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #RequiredDate="ngModel" name="RequiredDate" type="text" class="form-control" 
+									placeholder="Required Date" [(ngModel)]="objOrders.RequiredDate"  />
+							<div style="color:red" *ngIf="RequiredDate.touched && RequiredDate.invalid">Required Date is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="ShippedDate.touched && ShippedDate.invalid" >
+						<label for="ShippedDate" class="col-xs-3 col-sm-2 control-label">Shipped Date:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #ShippedDate="ngModel" name="ShippedDate" type="text" class="form-control" 
+									placeholder="Shipped Date" [(ngModel)]="objOrders.ShippedDate"  />
+							<div style="color:red" *ngIf="ShippedDate.touched && ShippedDate.invalid">Shipped Date is required.</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Shipvia:</label>
+						<div class="col-xs-9 col-sm-10">
+							<select id="ShipVia" name="ShipVia" class="form-control" [(ngModel)]="objOrders.ShipVia">
+								<option [value]="objOrders.ShipVia" *ngIf="!objOrders.ShipVia">SELECT</option>
+								<option *ngFor="let item of ShippersList" [value]="item.ShipperID">
+									{{item.CompanyName}}
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="Freight.touched && Freight.invalid" >
+						<label for="Freight" class="col-xs-3 col-sm-2 control-label">Freight:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #Freight="ngModel" name="Freight" type="text" class="form-control" 
+									placeholder="Freight" [(ngModel)]="objOrders.Freight" pattern="^\d{1,10}(\.\d{1,2})?$"  />
+							<div style="color:red" *ngIf="Freight.touched && Freight.invalid">Freight must be decimal and is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="ShipName.touched && ShipName.invalid" >
+						<label for="ShipName" class="col-xs-3 col-sm-2 control-label">Ship Name:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #ShipName="ngModel" name="ShipName" type="text" class="form-control" 
+									placeholder="Ship Name" [(ngModel)]="objOrders.ShipName"  />
+							<div style="color:red" *ngIf="ShipName.touched && ShipName.invalid">Ship Name is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="ShipAddress.touched && ShipAddress.invalid" >
+						<label for="ShipAddress" class="col-xs-3 col-sm-2 control-label">Shipaddress:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #ShipAddress="ngModel" name="ShipAddress" type="text" class="form-control" 
+									placeholder="Shipaddress" [(ngModel)]="objOrders.ShipAddress"  />
+							<div style="color:red" *ngIf="ShipAddress.touched && ShipAddress.invalid">Shipaddress is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="ShipCity.touched && ShipCity.invalid" >
+						<label for="ShipCity" class="col-xs-3 col-sm-2 control-label">Shipcity:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #ShipCity="ngModel" name="ShipCity" type="text" class="form-control" 
+									placeholder="Shipcity" [(ngModel)]="objOrders.ShipCity"  />
+							<div style="color:red" *ngIf="ShipCity.touched && ShipCity.invalid">Shipcity is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="ShipRegion.touched && ShipRegion.invalid" >
+						<label for="ShipRegion" class="col-xs-3 col-sm-2 control-label">Shipregion:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #ShipRegion="ngModel" name="ShipRegion" type="text" class="form-control" 
+									placeholder="Shipregion" [(ngModel)]="objOrders.ShipRegion"  />
+							<div style="color:red" *ngIf="ShipRegion.touched && ShipRegion.invalid">Shipregion is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="ShipPostalCode.touched && ShipPostalCode.invalid" >
+						<label for="ShipPostalCode" class="col-xs-3 col-sm-2 control-label">Shippostal Code:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #ShipPostalCode="ngModel" name="ShipPostalCode" type="text" class="form-control" 
+									placeholder="Shippostal Code" [(ngModel)]="objOrders.ShipPostalCode"  />
+							<div style="color:red" *ngIf="ShipPostalCode.touched && ShipPostalCode.invalid">Shippostal Code is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="ShipCountry.touched && ShipCountry.invalid" >
+						<label for="ShipCountry" class="col-xs-3 col-sm-2 control-label">Shipcountry:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #ShipCountry="ngModel" name="ShipCountry" type="text" class="form-control" 
+									placeholder="Shipcountry" [(ngModel)]="objOrders.ShipCountry"  />
+							<div style="color:red" *ngIf="ShipCountry.touched && ShipCountry.invalid">Shipcountry is required.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer clearfix">
+				<div class="pull-right">
+					<button class="btn btn-primary" (click)="addOrders()" [disabled]="form.invalid">Save</button>
+					<a class="btn btn-primary" (click)="gotoOrders()">Cancel</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

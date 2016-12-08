@@ -1,0 +1,49 @@
+<!-- Login: Startup.Auth.cs -->
+<!-- Call Web API: // POST /Token -->
+<!-- Check for line: TokenEndpointPath = new PathString("/Token") -->
+<div class="col-sm-12">
+    <h3>Log In</h3>
+	<p>Status: {{message}}</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="has-error">
+                <div class="help-block" id="loginFromMessage" ng-bind="message"></div>
+            </div>
+            <form class="form-login" role="form" data-bind="submit: login">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control" type="text" placeholder="Username" required autofocus />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-control" type="password" placeholder="Password" required />
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" (click)="login()" *ngIf="!authService.isLoggedIn">Log In</button>
+					<button class="btn btn-primary" (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
+                </div>
+                <div class="form-group">
+                    <a routerLink="/forgotpassword" routerLinkActive="active">Forgot Password</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2">&nbsp;</div>
+    </div>
+    <!--
+
+		template: `
+    <h2>LOGIN</h2>
+    <p>{{message}}</p>
+    <p>
+      <button (click)="login()"  *ngIf="!authService.isLoggedIn">Login</button>
+      <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
+    </p>`
+    <div style="padding:10px;margin:0px;border: 1px solid #ddd;">
+        Please use one of the following accounts to login:<br />
+        <ul>
+            <li>Username: <b>Admin</b>, Password: <b>Admin123</b></li>
+            <li>Username: <b>User</b>, Password: <b>User123</b></li>
+        </ul>
+    </div>
+    -->
+</div>

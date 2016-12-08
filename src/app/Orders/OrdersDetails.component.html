@@ -1,0 +1,114 @@
+<h2>Orders Details</h2>
+<div class="alert alert-danger" *ngIf="errorMessage">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<strong>Error!</strong> {{errorMessage}}
+</div>
+
+<div class="grid grid-pad">
+	<form>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Orders Details</div>
+			<div class="panel-body">
+				<div class="form-horizontal">
+					<div class="row has-error">
+						<span id="error" class="help-block"></span>
+					</div>
+					
+					<div class="form-group">
+						<label for="OrderID" class="col-xs-3 col-sm-2 control-label">Order Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="OrderID" name="OrderID" placeholder="Order Id" [(ngModel)]="objOrders.OrderID" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="CustomerID" class="col-xs-3 col-sm-2 control-label">Customer Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="CustomerID" name="CustomerID" placeholder="Customer Id" [(ngModel)]="objOrders.CustomerID" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="EmployeeID" class="col-xs-3 col-sm-2 control-label">Employee Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="EmployeeID" name="EmployeeID" placeholder="Employee Id" [(ngModel)]="objOrders.EmployeeID" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="OrderDate" class="col-xs-3 col-sm-2 control-label">Order Date:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="OrderDate" name="OrderDate" placeholder="Order Date" [(ngModel)]="objOrders.OrderDate" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="RequiredDate" class="col-xs-3 col-sm-2 control-label">Required Date:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="RequiredDate" name="RequiredDate" placeholder="Required Date" [(ngModel)]="objOrders.RequiredDate" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="ShippedDate" class="col-xs-3 col-sm-2 control-label">Shipped Date:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ShippedDate" name="ShippedDate" placeholder="Shipped Date" [(ngModel)]="objOrders.ShippedDate" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="ShipVia" class="col-xs-3 col-sm-2 control-label">Shipvia:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ShipVia" name="ShipVia" placeholder="Shipvia" [(ngModel)]="objOrders.ShipVia" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="Freight" class="col-xs-3 col-sm-2 control-label">Freight:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="Freight" name="Freight" placeholder="Freight" [(ngModel)]="objOrders.Freight" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="ShipName" class="col-xs-3 col-sm-2 control-label">Ship Name:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ShipName" name="ShipName" placeholder="Ship Name" [(ngModel)]="objOrders.ShipName" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="ShipAddress" class="col-xs-3 col-sm-2 control-label">Shipaddress:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ShipAddress" name="ShipAddress" placeholder="Shipaddress" [(ngModel)]="objOrders.ShipAddress" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="ShipCity" class="col-xs-3 col-sm-2 control-label">Shipcity:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ShipCity" name="ShipCity" placeholder="Shipcity" [(ngModel)]="objOrders.ShipCity" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="ShipRegion" class="col-xs-3 col-sm-2 control-label">Shipregion:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ShipRegion" name="ShipRegion" placeholder="Shipregion" [(ngModel)]="objOrders.ShipRegion" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="ShipPostalCode" class="col-xs-3 col-sm-2 control-label">Shippostal Code:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ShipPostalCode" name="ShipPostalCode" placeholder="Shippostal Code" [(ngModel)]="objOrders.ShipPostalCode" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="ShipCountry" class="col-xs-3 col-sm-2 control-label">Shipcountry:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ShipCountry" name="ShipCountry" placeholder="Shipcountry" [(ngModel)]="objOrders.ShipCountry" readonly />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer clearfix">
+				<div class="pull-right">
+					<button class="btn btn-primary" (click)="gotoOrdersEdit()">Edit</button>
+					<a class="btn btn-primary" (click)="gotoOrders()">Cancel</a>
+				</div>
+				<div class="pull-left">
+					<a class="btn btn-danger" (click)="deleteOrders(objOrders.OrderID)">Delete</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
