@@ -1,20 +1,10 @@
-# Angular2Webpack
+# NorthwindNg2
 
-A complete, yet simple, starter for Angular 2 using Webpack.
+A sample Northwind application developed using Angular 2.0. This is an R&D project.
 
-This seed repo serves as an Angular 2 starter for anyone looking to get up and running with Angular 2 and TypeScript fast. Using [Webpack](http://webpack.github.io/) for building our files and assisting with boilerplate. We're also using Protractor for our end-to-end story and Karma for our unit tests.
-* Best practices in file and application organization for [Angular 2](https://angular.io/).
-* Ready to go build system using [Webpack](https://webpack.github.io/docs/) for working with [TypeScript](http://www.typescriptlang.org/).
-* Testing Angular 2 code with [Jasmine](http://jasmine.github.io/) and [Karma](http://karma-runner.github.io/).
-* Coverage with [Istanbul](https://github.com/gotwarlost/istanbul)
-* End-to-end Angular 2 code using [Protractor](https://angular.github.io/protractor/).
-* Stylesheets with [SASS](http://sass-lang.com/) (not required, it supports regular css too).
-* Error reported with [TSLint](http://palantir.github.io/tslint/) and [Codelyzer](https://github.com/mgechev/codelyzer).
-* Documentation with [TypeDoc](http://typedoc.org/).
+You can help contribute to the framework of this application and add new components such as unit tests for existing modules, adding notification panel and anything that helps build a good framework for an enterprise application.
 
->Warning: Make sure you're using the latest version of Node.js and NPM
-
-[Is Angular 2 Ready Yet?](http://splintercode.github.io/is-angular-2-ready/)
+Some components of this application was generated using a source code generator [http://www.codebhagat.com](CodeBhagat for .NET). The backend Web API services being used for this Northwind application is at [`http://northwindapi.codebhagat.com`](http://northwindapi.codebhagat.com).
 
 ### Quick start
 
@@ -22,7 +12,7 @@ This seed repo serves as an Angular 2 starter for anyone looking to get up and r
 
 ```bash
 # clone our repo
-$ git clone https://github.com/chiragbhagat/Angular2Webpack.git my-app
+$ git clone https://github.com/chiragbhagat/NorthwindNg2.git NorthwindNg2
 
 # change directory to your app
 $ cd my-app
