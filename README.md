@@ -1,4 +1,4 @@
-# NorthwindNg2
+# NorthwindNg2 Angular 2.0 Application
 
 A sample Northwind application developed using Angular 2.0. This is an R&D project.
 
@@ -35,7 +35,6 @@ go to [http://localhost:8080](http://localhost:8080) in your browser.
     * [Production](#production)
     * [Documentation](#documentation)
 * [Frequently asked questions](#faq)
-* [TypeScript](#typescript)
 * [License](#license)
 
 # Getting Started
@@ -106,17 +105,17 @@ No, Webpack will add all the needed Javascript bundles as script tags and all th
 
 #### How to include external angular 2 libraries ?
 
-It's simple, just install the lib via npm and import it in your code when you need it. Don't forget that you need to configure some external libs in the [bootstrap](https://github.com/preboot/angular2-webpack/blob/master/src/main.ts) of your application.
+It's simple, just install the lib via npm and import it in your code when you need it. Don't forget that you need to configure some external libs in the [bootstrap](https://github.com/chiragbhagat/northwindng2/blob/master/src/main.ts) of your application.
 
 #### How to include external css files such as bootstrap.css ?
 
-Just install the lib and import the css files in [vendor.ts](https://github.com/preboot/angular2-webpack/blob/master/src/vendor.ts). For example this is how to do it with bootstrap:
+Just install the lib and import the css files in [vendor.ts](https://github.com/chiragbhagat/northwindng2/blob/master/src/vendor.ts). For example this is how to do it with bootstrap:
 
 ```sh
 npm install bootstrap@next --save
 ```
 
-And in [vendor.ts](https://github.com/preboot/angular2-webpack/blob/master/src/vendor.ts) add the following:
+And in [vendor.ts](https://github.com/chiragbhagat/northwindng2/blob/master/src/vendor.ts) add the following:
 
 ```ts
 import 'bootstrap/dist/css/bootstrap.css';
