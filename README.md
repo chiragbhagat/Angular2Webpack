@@ -4,7 +4,7 @@ A sample Northwind application developed using Angular 2.0. This is an R&D proje
 
 You can help contribute to the framework of this application and add new components such as unit tests for existing modules, adding notification panel and anything that helps build a good framework for an enterprise application.
 
-Some components of this application was generated using a source code generator [http://www.codebhagat.com](CodeBhagat for .NET). The backend Web API services being used for this Northwind application is at [`http://northwindapi.codebhagat.com`](http://northwindapi.codebhagat.com).
+Some components of this application was generated using a source code generator [CodeBhagat for .NET](http://www.codebhagat.com). The backend Web API services being used for this Northwind application is at [`http://northwindapi.codebhagat.com`](http://northwindapi.codebhagat.com).
 
 ### Quick start
 
@@ -121,19 +121,6 @@ And in [vendor.ts](https://github.com/preboot/angular2-webpack/blob/master/src/v
 ```ts
 import 'bootstrap/dist/css/bootstrap.css';
 ```
-
-# TypeScript
-
-> To take full advantage of TypeScript with autocomplete you would have to use an editor with the correct TypeScript plugins.
-
-## Use a TypeScript-aware editor
-
-We have good experience using these editors:
-
-* [Visual Studio Code](https://code.visualstudio.com/)
-* [Webstorm 11+](https://www.jetbrains.com/webstorm/download/)
-* [Atom](https://atom.io/) with [TypeScript plugin](https://atom.io/packages/atom-typescript)
-* [Sublime Text](http://www.sublimetext.com/3) with [Typescript-Sublime-Plugin](https://github.com/Microsoft/Typescript-Sublime-plugin#installation)
 
 # License
 
