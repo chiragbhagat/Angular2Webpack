@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable }     from 'rxjs/Rx';
-//import { Observable }     from 'rxjs/Observable';
-//import 'rxjs/add/operator/catch';
+import { Observable }     from 'rxjs/Observable';
+// import 'rxjs/add/operator/catch';
 
 import myGlobals = require('../globals');
 
 export class ProductsData {
-    public ProductID: number;
-    public ProductName: string;
-    public SupplierID: number;
-    public CategoryID: number;
-    public QuantityPerUnit: string;
-    public UnitPrice: number;
-    public UnitsInStock: number;
-    public UnitsOnOrder: number;
-    public ReorderLevel: number;
-    public Discontinued: boolean;
+	
+			public ProductID: number;
+			public ProductName: string;
+			public SupplierID: number;
+			public CategoryID: number;
+			public QuantityPerUnit: string;
+			public UnitPrice: number;
+			public UnitsInStock: number;
+			public UnitsOnOrder: number;
+			public ReorderLevel: number;
+			public Discontinued: boolean;
 }
 
 @Injectable()
@@ -29,17 +29,17 @@ export class ProductsService {
 
     getAll() : Observable<ProductsData[]> {
 		let url = this.baseUrl + 'api/Products';
-		
+
 		return this._http
 			.get(url, { headers: this.getHeaders() })
-			.map(res => this.extractData(res))
+			.map(response => response.json())
 			.do(data => console.log(data))
 			.catch(this.handleError);
     }
 
     getAllBy(filterExpression: string) : Observable<ProductsData[]> {
 		let url = this.baseUrl + 'api/Products?filterExpression=${filterExpression}';
-		
+
         return this._http
 			.get(url, {headers: this.getHeaders()})
             .map(response => response.json())
@@ -49,7 +49,7 @@ export class ProductsService {
 
     getAllByPaging(filterExpression: string, pageIndex: number, pageSize: number) : Observable<any> {
 		let url = this.baseUrl + `api/Products?filterExpression=&sortExpression=ProductID&pageIndex=${pageIndex}&pageSize=${pageSize}`;
-		
+
         return this._http
             .get(url, {headers: this.getHeaders()})
             .map(response => response.json())
@@ -57,9 +57,9 @@ export class ProductsService {
             .catch(this.handleError);
     }
 
-	getByID(id: number): Observable<ProductsData> {
+	getByID(id: string): Observable<ProductsData> {
 		let url = `${this.baseUrl}api/Products/${id}`;
-		
+
         return this._http
 			.get(url, {headers: this.getHeaders()})
             .map(response => response.json())
@@ -68,7 +68,7 @@ export class ProductsService {
     }
 
     addProductsData(body:ProductsData) : Observable<ProductsData> {
-		let bodyString = JSON.stringify(body); // Stringify payload 
+		let bodyString = JSON.stringify(body); // Stringify payload
         let options = new RequestOptions({ headers: this.getHeaders(), method: "post" });
 		let url = this.baseUrl + 'api/Products';
  
@@ -78,7 +78,7 @@ export class ProductsService {
     }
 
     updateProductsData(body:ProductsData) : Observable<ProductsData> {
-		let bodyString = JSON.stringify(body); // Stringify payload 
+		let bodyString = JSON.stringify(body); // Stringify payload
 		let options = new RequestOptions({ headers: this.getHeaders(), method: "put" });
         let url = this.baseUrl + 'api/Products';
 
@@ -87,11 +87,11 @@ export class ProductsService {
             .catch(this.handleError);
     }
 
-    deleteProducts(id:number) : Observable<Object>{
-		let url = `${this.baseUrl}api/Products/${id}`;
+    deleteProducts(id:string) : Observable<Object>{
+		let url = `${this.baseUrl}api/Region/${id}`;
  
 		return this._http.delete(url)
-            .map(this.extractData)
+            .map(res => res)
             .catch(this.handleError);
     }
 
@@ -99,13 +99,13 @@ export class ProductsService {
         let headers = new Headers();
         headers.append('Accept', 'application/json');
 		headers.append('Content-Type', 'application/json');
-        //headers.append('Access-Control-Allow-Headers', 'Content-Type');
-        //headers.append('Access-Control-Allow-Methods', 'GET');
-        //headers.append('Access-Control-Allow-Origin', '*');
+        // headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        // headers.append('Access-Control-Allow-Methods', 'GET');
+        // headers.append('Access-Control-Allow-Origin', '*');
         return headers;
     }
 
-    private extractData(res: Response) {
+    private extractData(res: Response | any) {
         let body: any;
 
         // check if empty, before call json
@@ -114,13 +114,9 @@ export class ProductsService {
         }
         return body || { };
     }
-    
-    handleError(error: Response | any) {
-        //console.error(error);
-        //return Observable.throw(error.json().error || 'Server error.');
 
-		// In a real world app, we might use a remote logging infrastructure
-		let errMsg: string;
+    handleError(error: Response | any) {
+        let errMsg: string;
 		if (error instanceof Response) {
 		const body = error.json() || '';
 		const err = body.error || JSON.stringify(body);
@@ -141,12 +137,11 @@ export class ProductsService {
     }
 
     function toProducts(r:any): ProductsData{
-        let Products = <ProductsData>({
-            ProductsID: r.ProductsID,
-            ProductsDescription: r.ProductsDescription
+        let region = <ProductsData>({
+            RegionID: r.RegionID,
+            RegionDescription: r.RegionDescription
         });
-        console.log('Parsed Products:', Products);
-        return Products;
+        console.log('Parsed region:', region);
+        return region;
     }
 */
-	

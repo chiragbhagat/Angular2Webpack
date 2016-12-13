@@ -1,14 +1,16 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ProductsListComponent }    from './Products-list.component';
-import { ProductsEditComponent }  from './Products-edit.component';
-//import { ProductsAddComponent }  from './Products-add.component';
+import { ProductsListComponent } from './ProductsList.component';
+import { ProductsAddComponent }  from './ProductsAdd.component';
+import { ProductsEditComponent } from './ProductsEdit.component';
+import { ProductsDetailsComponent } from './ProductsDetails.component';
 
 const ProductsRoutes: Routes = [
-  { path: 'products',  component: ProductsListComponent },
-  //{ path: 'Products/add', component: ProductsAddComponent },
-  { path: 'products/:id', component: ProductsEditComponent },
+	{ path: 'Products',  component: ProductsListComponent },
+	{ path: 'Products/add', component: ProductsAddComponent },
+	{ path: 'Products/:id', component: ProductsEditComponent },
+	{ path: 'Products/Details/:id', component: ProductsDetailsComponent },
 ];
 
 @NgModule({
@@ -19,4 +21,5 @@ const ProductsRoutes: Routes = [
     RouterModule
   ]
 })
+
 export class ProductsRoutingModule { }

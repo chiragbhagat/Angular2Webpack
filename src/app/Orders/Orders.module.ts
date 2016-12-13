@@ -11,12 +11,14 @@
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule }    from '@angular/forms';
+import { DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { OrdersService } from './Orders.service';
 import { OrdersListComponent } from './OrdersList.component';
 import { OrdersAddComponent } from './OrdersAdd.component';
 import { OrdersEditComponent } from './OrdersEdit.component';
 import { OrdersDetailsComponent } from './OrdersDetails.component';
+import { DatePickerDropDownComponent } from '../shared/datepicker-dropdown.component';
 
 import { OrdersRoutingModule } from './Orders-routing.module';
 
@@ -24,9 +26,11 @@ import { OrdersRoutingModule } from './Orders-routing.module';
   imports: [
     CommonModule,
     FormsModule,
-    OrdersRoutingModule
+    OrdersRoutingModule,
+    DatepickerModule
   ],
   declarations: [
+    DatePickerDropDownComponent,
     OrdersListComponent,
     OrdersEditComponent,
     OrdersAddComponent,

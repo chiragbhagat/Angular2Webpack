@@ -1,0 +1,113 @@
+<h2>Add Products</h2>
+<div class="alert alert-danger" *ngIf="errorMessage">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<strong>Error!</strong> {{errorMessage}}
+</div>
+
+<div class="grid grid-pad">
+	<form>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Products Add</div>
+			<div class="panel-body">
+				<div class="form-horizontal">
+					<div class="row has-error">
+						<span id="error" class="help-block"></span>
+					</div>
+					
+					<div class="form-group">
+						<label for="ProductID" class="col-xs-3 col-sm-2 control-label">Product Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ProductID" name="ProductID" placeholder="Product Id" [(ngModel)]="objProducts.ProductID" readonly />
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="ProductName.touched && ProductName.invalid" >
+						<label for="ProductName" class="col-xs-3 col-sm-2 control-label">Product Name:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #ProductName="ngModel" name="ProductName" type="text" class="form-control" 
+									placeholder="Product Name" [(ngModel)]="objProducts.ProductName" required />
+							<div style="color:red" *ngIf="ProductName.touched && ProductName.invalid">Product Name is required.</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Supplier Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<select id="SupplierID" name="SupplierID" class="form-control" [(ngModel)]="objProducts.SupplierID">
+								<option [value]="objProducts.SupplierID" *ngIf="!objProducts.SupplierID">SELECT</option>
+								<option *ngFor="let item of SuppliersList" [value]="item.SupplierID">
+									{{item.CompanyName}}
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Category Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<select id="CategoryID" name="CategoryID" class="form-control" [(ngModel)]="objProducts.CategoryID">
+								<option [value]="objProducts.CategoryID" *ngIf="!objProducts.CategoryID">SELECT</option>
+								<option *ngFor="let item of CategoriesList" [value]="item.CategoryID">
+									{{item.CategoryName}}
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="QuantityPerUnit.touched && QuantityPerUnit.invalid" >
+						<label for="QuantityPerUnit" class="col-xs-3 col-sm-2 control-label">Quantityperunit:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #QuantityPerUnit="ngModel" name="QuantityPerUnit" type="text" class="form-control" 
+									placeholder="Quantityperunit" [(ngModel)]="objProducts.QuantityPerUnit"  />
+							<div style="color:red" *ngIf="QuantityPerUnit.touched && QuantityPerUnit.invalid">Quantityperunit is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="UnitPrice.touched && UnitPrice.invalid" >
+						<label for="UnitPrice" class="col-xs-3 col-sm-2 control-label">Unitprice:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #UnitPrice="ngModel" name="UnitPrice" type="text" class="form-control" 
+									placeholder="Unitprice" [(ngModel)]="objProducts.UnitPrice" pattern="^(0|[1-9][0-9]*)$"  />
+							<div style="color:red" *ngIf="UnitPrice.touched && UnitPrice.invalid">Unitprice must be decimal and is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="UnitsInStock.touched && UnitsInStock.invalid" >
+						<label for="UnitsInStock" class="col-xs-3 col-sm-2 control-label">Unitsinstock:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #UnitsInStock="ngModel" name="UnitsInStock" type="text" class="form-control" 
+									placeholder="Unitsinstock" [(ngModel)]="objProducts.UnitsInStock" pattern="^(0|[1-9][0-9]*)$"  />
+							<div style="color:red" *ngIf="UnitsInStock.touched && UnitsInStock.invalid">Unitsinstock must be numeric and is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="UnitsOnOrder.touched && UnitsOnOrder.invalid" >
+						<label for="UnitsOnOrder" class="col-xs-3 col-sm-2 control-label">Unitsonorder:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #UnitsOnOrder="ngModel" name="UnitsOnOrder" type="text" class="form-control" 
+									placeholder="Unitsonorder" [(ngModel)]="objProducts.UnitsOnOrder" pattern="^(0|[1-9][0-9]*)$"  />
+							<div style="color:red" *ngIf="UnitsOnOrder.touched && UnitsOnOrder.invalid">Unitsonorder must be numeric and is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="ReorderLevel.touched && ReorderLevel.invalid" >
+						<label for="ReorderLevel" class="col-xs-3 col-sm-2 control-label">Reorderlevel:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #ReorderLevel="ngModel" name="ReorderLevel" type="text" class="form-control" 
+									placeholder="Reorderlevel" [(ngModel)]="objProducts.ReorderLevel" pattern="^(0|[1-9][0-9]*)$"  />
+							<div style="color:red" *ngIf="ReorderLevel.touched && ReorderLevel.invalid">Reorderlevel must be numeric and is required.</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="chkDiscontinued" class="col-xs-3 col-sm-2 control-label">Discontinued:</label>
+						<div class="col-xs-9 col-sm-10">
+							<div class="pull-left">
+								<div class="pull-left">
+									<input id="chkDiscontinued" name="chkDiscontinued" type="checkbox" placeholder="Discontinued" [(ngModel)]="objProducts.Discontinued">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer clearfix">
+				<div class="pull-right">
+					<button class="btn btn-primary" (click)="addProducts()">Save</button>
+					<a class="btn btn-primary" (click)="gotoProducts()">Cancel</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { Router,
          NavigationExtras } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr';
+
 import { ApiService } from './shared';
 import { AuthService }      from './auth.service';
 
@@ -18,8 +20,10 @@ export class AppComponent {
   message: string;
   url = 'https://github.com/preboot/angular2-webpack';
 
-  constructor(public authService: AuthService, public router: Router, private api: ApiService) {
+  constructor(public authService: AuthService, public router: Router, private api: ApiService
+      , private _toastr: ToastsManager, vRef: ViewContainerRef) {
     this.setMessage();
+    this._toastr.setRootViewContainerRef(vRef);
     // Do something with api
   }
 

@@ -13,3 +13,4 @@ import '@angularclass/hmr';
 
 import 'bootstrap/dist/css/bootstrap.css';	// Worked bootstrap styles when added!
 import 'bootstrap/dist/js/bootstrap.js';	// Worked all dropdown menus when added!
+import 'ng2-toastr/bundles/ng2-toastr.min.css'; // Worked with ng2-toastr 

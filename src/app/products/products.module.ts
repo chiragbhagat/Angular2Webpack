@@ -2,12 +2,13 @@ import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule }    from '@angular/forms';
 
-import { ProductsListComponent }    from './Products-list.component';
-import { ProductsEditComponent }  from './Products-edit.component';
-//import { ProductsAddComponent }  from './Products-add.component';
-import { ProductsService } from './products.service';
+import { ProductsService } from './Products.service';
+import { ProductsListComponent } from './ProductsList.component';
+import { ProductsAddComponent } from './ProductsAdd.component';
+import { ProductsEditComponent } from './ProductsEdit.component';
+import { ProductsDetailsComponent } from './ProductsDetails.component';
 
-import { ProductsRoutingModule } from './products-routing.module';
+import { ProductsRoutingModule } from './Products-routing.module';
 
 @NgModule({
   imports: [
@@ -18,10 +19,12 @@ import { ProductsRoutingModule } from './products-routing.module';
   declarations: [
     ProductsListComponent,
     ProductsEditComponent,
-    //ProductsAddComponent
+    ProductsAddComponent,
+	ProductsDetailsComponent
   ],
   providers: [
     ProductsService
   ]
 })
-export class ProductsModule {}
+
+export class ProductsModule { }

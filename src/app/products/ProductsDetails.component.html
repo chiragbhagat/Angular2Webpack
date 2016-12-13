@@ -1,0 +1,90 @@
+<h2>Products Details</h2>
+<div class="alert alert-danger" *ngIf="errorMessage">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<strong>Error!</strong> {{errorMessage}}
+</div>
+
+<div class="grid grid-pad">
+	<form>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Products Details</div>
+			<div class="panel-body">
+				<div class="form-horizontal">
+					<div class="row has-error">
+						<span id="error" class="help-block"></span>
+					</div>
+					
+					<div class="form-group">
+						<label for="ProductID" class="col-xs-3 col-sm-2 control-label">Product Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ProductID" name="ProductID" placeholder="Product Id" [(ngModel)]="objProducts.ProductID" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="ProductName" class="col-xs-3 col-sm-2 control-label">Product Name:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ProductName" name="ProductName" placeholder="Product Name" [(ngModel)]="objProducts.ProductName" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="SupplierID" class="col-xs-3 col-sm-2 control-label">Supplier Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="SupplierID" name="SupplierID" placeholder="Supplier Id" [(ngModel)]="objProducts.SupplierID" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="CategoryID" class="col-xs-3 col-sm-2 control-label">Category Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="CategoryID" name="CategoryID" placeholder="Category Id" [(ngModel)]="objProducts.CategoryID" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="QuantityPerUnit" class="col-xs-3 col-sm-2 control-label">Quantityperunit:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="QuantityPerUnit" name="QuantityPerUnit" placeholder="Quantityperunit" [(ngModel)]="objProducts.QuantityPerUnit" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="UnitPrice" class="col-xs-3 col-sm-2 control-label">Unitprice:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="UnitPrice" name="UnitPrice" placeholder="Unitprice" [(ngModel)]="objProducts.UnitPrice" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="UnitsInStock" class="col-xs-3 col-sm-2 control-label">Unitsinstock:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="UnitsInStock" name="UnitsInStock" placeholder="Unitsinstock" [(ngModel)]="objProducts.UnitsInStock" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="UnitsOnOrder" class="col-xs-3 col-sm-2 control-label">Unitsonorder:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="UnitsOnOrder" name="UnitsOnOrder" placeholder="Unitsonorder" [(ngModel)]="objProducts.UnitsOnOrder" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="ReorderLevel" class="col-xs-3 col-sm-2 control-label">Reorderlevel:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="ReorderLevel" name="ReorderLevel" placeholder="Reorderlevel" [(ngModel)]="objProducts.ReorderLevel" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="Discontinued" class="col-xs-3 col-sm-2 control-label">Discontinued:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="Discontinued" name="Discontinued" placeholder="Discontinued" [(ngModel)]="objProducts.Discontinued" readonly />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer clearfix">
+				<div class="pull-right">
+					<button class="btn btn-primary" (click)="gotoProductsEdit()">Edit</button>
+					<a class="btn btn-primary" (click)="gotoProducts()">Cancel</a>
+				</div>
+				<div class="pull-left">
+					<a class="btn btn-danger" (click)="deleteProducts(objProducts.ProductID)">Delete</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

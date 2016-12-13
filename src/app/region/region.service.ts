@@ -97,7 +97,7 @@ export class RegionService {
         return headers;
     }
 
-    private extractData(res: Response) {
+    private extractData(res: Response | any) {
         let body: any;
 
         // check if empty, before call json
