@@ -23,9 +23,9 @@ import { ForgotPasswordComponent }       from './account/forgotpassword.componen
 import { ApiService } from './shared';
 import { AuthService} from './auth.service';
 
-import { CategoriesModule }         from './categories/categories.module';
+import { CategoriesModule }         from './Categories/Categories.module';
 import { ProductsModule }         from './products/products.module';
-import { RegionModule }         from './region/region.module';
+import { RegionModule }         from './Region/Region.module';
 import { OrdersModule }         from './Orders/Orders.module';
 import { AdminModule }         from './admin/admin.module';
 import { DialogService }        from './dialog.service';

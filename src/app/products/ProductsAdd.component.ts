@@ -96,12 +96,16 @@ export class ProductsAddComponent implements OnInit {
 		this.ProductsService.addProductsData(this.objProducts)
 			.subscribe(record => this.router.navigate(['/Products']),
 			error =>  this.errorMessage = 'There was an error while adding record. Error: ' + <any>error,
-			() => { console.log('Products record added successfully...'); }
+			() => { 
+				this.toastr.success('Products record added successfully...');
+				console.log('Products record added successfully...'); 
+			}
 		);
 	}
 
 	gotoProducts() {
 		let Id = this.objProducts ? this.objProducts.ProductID : null;
+		this.toastr.success('Back to Products List...');
 		this.router.navigate(['/Products']);
 	}
 
