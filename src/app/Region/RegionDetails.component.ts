@@ -93,6 +93,7 @@ export class RegionDetailsComponent implements OnInit {
 	}
 
 	gotoRegion() {
+		this.toastr.success('Back to Region List...');
 		this.router.navigate(['/Region']);
 	}
 

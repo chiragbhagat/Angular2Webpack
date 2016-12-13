@@ -99,6 +99,7 @@ export class OrdersDetailsComponent implements OnInit {
 	}
 
 	gotoOrders() {
+		this.toastr.success('Back to Orders List...');
 		this.router.navigate(['/Orders']);
 	}
 

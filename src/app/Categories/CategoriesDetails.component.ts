@@ -93,6 +93,7 @@ export class CategoriesDetailsComponent implements OnInit {
 	}
 
 	gotoCategories() {
+		this.toastr.success('Back to Categories List...');
 		this.router.navigate(['/Categories']);
 	}
 

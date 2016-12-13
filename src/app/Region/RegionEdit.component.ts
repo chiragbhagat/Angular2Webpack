@@ -94,7 +94,10 @@ export class RegionEditComponent implements OnInit {
 		this.RegionService.updateRegionData(this.objRegion)
 			.subscribe(record => this.router.navigate(['/Region']),
 				error =>  this.errorMessage = 'There was an error while updating record. Error: ' + <any>error,
-				() => { console.log('Region record updated successfully...'); }
+				() => { 
+					this.toastr.success('Region record updated successfully...');
+					console.log('Region record updated successfully...'); 
+				}
 			);
 	}
   
@@ -104,13 +107,17 @@ export class RegionEditComponent implements OnInit {
 			this.RegionService.deleteRegion(this.objRegion.RegionID.toString())
 			.subscribe(record => this.router.navigate(['/Region']),
 				error =>  this.errorMessage = 'There was an error while deleting record. Error: ' + <any>error,
-				() => { console.log('Region record deleted successfully...'); }
+				() => { 
+					this.toastr.success('Region record deleted successfully...');
+					console.log('Region record deleted successfully...'); 
+				}
 			);
 		}
 	}
 
 	gotoRegion() {
 		let Id = this.objRegion ? this.objRegion.RegionID : null;
+		this.toastr.success('Back to Region List...');
 		this.router.navigate(['/Region']);
 	}
 

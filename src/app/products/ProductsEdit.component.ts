@@ -113,7 +113,10 @@ export class ProductsEditComponent implements OnInit {
 			this.ProductsService.deleteProducts(this.objProducts.ProductID.toString())
 			.subscribe(record => this.router.navigate(['/Products']),
 				error =>  this.errorMessage = 'There was an error while deleting record. Error: ' + <any>error,
-				() => { console.log('Products record deleted successfully...'); }
+				() => { 
+					this.toastr.success('Products record deleted successfully...');
+					console.log('Products record deleted successfully...'); 
+				}
 			);
 		}
 	}

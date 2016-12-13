@@ -111,6 +111,7 @@ export class CategoriesEditComponent implements OnInit {
 
 	gotoCategories() {
 		let Id = this.objCategories ? this.objCategories.CategoryID : null;
+		this.toastr.success('Back to Categories List...');
 		this.router.navigate(['/Categories']);
 	}
 

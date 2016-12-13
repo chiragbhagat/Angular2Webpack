@@ -96,6 +96,7 @@ export class RegionAddComponent implements OnInit {
 
 	gotoRegion() {
 		let Id = this.objRegion ? this.objRegion.RegionID : null;
+		this.toastr.success('Back to Region List...');
 		this.router.navigate(['/Region']);
 	}
 

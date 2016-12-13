@@ -102,6 +102,7 @@ export class OrdersAddComponent implements OnInit {
 
 	gotoOrders() {
 		let Id = this.objOrders ? this.objOrders.OrderID : null;
+		this.toastr.success('Back to Orders List...');
 		this.router.navigate(['/Orders']);
 	}
 
