@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------
  * Created By	: CodeBhagat v1.0
- * Created Date	: 12/8/2016
+ * Created Date	: 12/13/2016
  * Component	: OrdersModule
  * Purpose		: Module for Orders.
  * Copyright	: Copyright 2014-2016 CodeBhagat LLC. All Rights Reserved.
@@ -26,11 +26,11 @@ import { OrdersRoutingModule } from './Orders-routing.module';
   imports: [
     CommonModule,
     FormsModule,
-    OrdersRoutingModule,
-    DatepickerModule
+	  OrdersRoutingModule,
+	  DatepickerModule
   ],
   declarations: [
-    DatePickerDropDownComponent,
+	  DatePickerDropDownComponent,
     OrdersListComponent,
     OrdersEditComponent,
     OrdersAddComponent,

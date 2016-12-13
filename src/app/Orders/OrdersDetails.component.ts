@@ -4,6 +4,8 @@ import { Component, OnInit, HostBinding, EventEmitter, Input, Output,
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
+import { ToastsManager }  from 'ng2-toastr';
+
 import { OrdersData, OrdersService }  from './Orders.service';
 
 import { ShippersData, ShippersService } from '../Shippers/Shippers.service';
@@ -61,7 +63,10 @@ export class OrdersDetailsComponent implements OnInit {
 	ShippersList: ShippersData[];
 	EmployeesList: EmployeesData[];
 
-	constructor(private route: ActivatedRoute, private router: Router, private OrdersService: OrdersService
+	constructor(private route: ActivatedRoute, 
+		private router: Router, 
+		private toastr: ToastsManager,
+		private OrdersService: OrdersService
 			, private  ShippersService:  ShippersService
 			, private  EmployeesService:  EmployeesService
 

@@ -4,8 +4,11 @@
 	<strong>Error!</strong> {{errorMessage}}
 </div>
 
-<div class="grid grid-pad">
-	<form>
+<div *ngIf="false">Is Form Valid: {{ form.valid}}</div>
+<div *ngIf="false">Form Value: {{ form.value | json}}</div>
+
+<div class="container">
+	<form #form="ngForm">
 		<div class="panel panel-primary">
 			<div class="panel-heading">Products Add</div>
 			<div class="panel-body">
@@ -14,14 +17,16 @@
 						<span id="error" class="help-block"></span>
 					</div>
 					
-					<div class="form-group">
-						<label for="ProductID" class="col-xs-3 col-sm-2 control-label">Product Id:</label>
+					<div class="form-group" [class.has-error]="ProductID.touched && ProductID.invalid" >
+						<label for="ProductID" class="col-xs-3 col-sm-2 control-label">Product Id:<font color="red">*&nbsp;</font></label>
 						<div class="col-xs-9 col-sm-10">
-							<input type="text" class="form-control" id="ProductID" name="ProductID" placeholder="Product Id" [(ngModel)]="objProducts.ProductID" readonly />
+							<input #ProductID="ngModel" name="ProductID" type="text" class="form-control" 
+									placeholder="Product Id" [(ngModel)]="objProducts.ProductID" pattern="^(0|[1-9][0-9]*)$" required />
+							<div style="color:red" *ngIf="ProductID.touched && ProductID.invalid">Product Id must be numeric and is required.</div>
 						</div>
 					</div>
 					<div class="form-group" [class.has-error]="ProductName.touched && ProductName.invalid" >
-						<label for="ProductName" class="col-xs-3 col-sm-2 control-label">Product Name:</label>
+						<label for="ProductName" class="col-xs-3 col-sm-2 control-label">Product Name:<font color="red">*&nbsp;</font></label>
 						<div class="col-xs-9 col-sm-10">
 							<input #ProductName="ngModel" name="ProductName" type="text" class="form-control" 
 									placeholder="Product Name" [(ngModel)]="objProducts.ProductName" required />
@@ -62,7 +67,7 @@
 						<label for="UnitPrice" class="col-xs-3 col-sm-2 control-label">Unitprice:</label>
 						<div class="col-xs-9 col-sm-10">
 							<input #UnitPrice="ngModel" name="UnitPrice" type="text" class="form-control" 
-									placeholder="Unitprice" [(ngModel)]="objProducts.UnitPrice" pattern="^(0|[1-9][0-9]*)$"  />
+									placeholder="Unitprice" [(ngModel)]="objProducts.UnitPrice" pattern="^\d{1,10}(\.\d{1,2})?$"  />
 							<div style="color:red" *ngIf="UnitPrice.touched && UnitPrice.invalid">Unitprice must be decimal and is required.</div>
 						</div>
 					</div>
@@ -91,7 +96,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="chkDiscontinued" class="col-xs-3 col-sm-2 control-label">Discontinued:</label>
+						<label for="chkDiscontinued" class="col-xs-3 col-sm-2 control-label">Discontinued:<font color="red">*&nbsp;</font></label>
 						<div class="col-xs-9 col-sm-10">
 							<div class="pull-left">
 								<div class="pull-left">
@@ -104,7 +109,7 @@
 			</div>
 			<div class="panel-footer clearfix">
 				<div class="pull-right">
-					<button class="btn btn-primary" (click)="addProducts()">Save</button>
+					<button class="btn btn-primary" (click)="addProducts()" [disabled]="form.invalid">Save</button>
 					<a class="btn btn-primary" (click)="gotoProducts()">Cancel</a>
 				</div>
 			</div>

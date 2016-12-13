@@ -1,3 +1,13 @@
+/* ------------------------------------------------------------
+ * Created By	: CodeBhagat v1.0
+ * Created Date	: 12/13/2016
+ * Component	: ProductsRoutingModule
+ * Purpose		: Routing module for Products.
+ * Copyright	: Copyright 2014-2016 CodeBhagat LLC. All Rights Reserved.
+ * Restrictions	: The generated code is for evaluation purpose only. Use of this generated code requires valid softare license.
+ * ------------------------------------------------------------
+*/
+
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

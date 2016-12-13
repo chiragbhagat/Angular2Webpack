@@ -1,0 +1,63 @@
+<h2>Edit Categories</h2>
+<div class="alert alert-danger" *ngIf="errorMessage">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<strong>Error!</strong> {{errorMessage}}
+</div>
+<div *ngIf="false">Is Form Valid: {{ form.valid}}</div>
+<div *ngIf="false">Form Value: {{ form.value | json}}</div>
+<div class="container">
+	<form #form="ngForm">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Categories Edit</div>
+			<div class="panel-body">
+				<div class="form-horizontal">
+					<div class="row has-error">
+						<span id="error" class="help-block"></span>
+					</div>
+					
+					<div class="form-group" [class.has-error]="CategoryID.touched && CategoryID.invalid" >
+						<label for="CategoryID" class="col-xs-3 col-sm-2 control-label">Category Id:<font color="red">*&nbsp;</font></label>
+						<div class="col-xs-9 col-sm-10">
+							<input #CategoryID="ngModel" name="CategoryID" type="text" class="form-control" 
+									placeholder="Category Id" [(ngModel)]="objCategories.CategoryID" pattern="^(0|[1-9][0-9]*)$" required />
+							<div style="color:red" *ngIf="CategoryID.touched && CategoryID.invalid">Category Id must be numeric and is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="CategoryName.touched && CategoryName.invalid" >
+						<label for="CategoryName" class="col-xs-3 col-sm-2 control-label">Category Name:<font color="red">*&nbsp;</font></label>
+						<div class="col-xs-9 col-sm-10">
+							<input #CategoryName="ngModel" name="CategoryName" type="text" class="form-control" 
+									placeholder="Category Name" [(ngModel)]="objCategories.CategoryName" required />
+							<div style="color:red" *ngIf="CategoryName.touched && CategoryName.invalid">Category Name is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="Description.touched && Description.invalid" >
+						<label for="Description" class="col-xs-3 col-sm-2 control-label">Description:</label>
+						<div class="col-xs-9 col-sm-10">
+							<textarea #Description="ngModel" name="Description" type="text" class="form-control" 
+									placeholder="Description" [(ngModel)]="objCategories.Description"  rows="4"> </textarea>
+							<div style="color:red" *ngIf="Description.touched && Description.invalid">Description is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="Picture.touched && Picture.invalid" >
+						<label for="Picture" class="col-xs-3 col-sm-2 control-label">Picture:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input #Picture="ngModel" name="Picture" type="text" class="form-control" 
+									placeholder="Picture" [(ngModel)]="objCategories.Picture" pattern="^(0|[1-9][0-9]*)$"  />
+							<div style="color:red" *ngIf="Picture.touched && Picture.invalid">Picture must be numeric and is required.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer clearfix">
+				<div class="pull-right">
+					<button class="btn btn-primary" (click)="updateCategories()" [disabled]="form.invalid">Save</button>
+					<a class="btn btn-primary" (click)="gotoCategories()">Cancel</a>
+				</div>
+				<div class="pull-left">
+					<a class="btn btn-danger" type="submit" (click)="deleteCategories(objCategories.CategoryID)">Delete</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,42 @@
+<h2>Region Details</h2>
+<div class="alert alert-danger" *ngIf="errorMessage">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<strong>Error!</strong> {{errorMessage}}
+</div>
+
+<div class="grid grid-pad">
+	<form>
+		<div class="panel panel-primary">
+			<div class="panel-heading">Region Details</div>
+			<div class="panel-body">
+				<div class="form-horizontal">
+					<div class="row has-error">
+						<span id="error" class="help-block"></span>
+					</div>
+					
+					<div class="form-group">
+						<label for="RegionID" class="col-xs-3 col-sm-2 control-label">Region Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="RegionID" name="RegionID" placeholder="Region Id" [(ngModel)]="objRegion.RegionID" readonly />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="RegionDescription" class="col-xs-3 col-sm-2 control-label">Region Description:</label>
+						<div class="col-xs-9 col-sm-10">
+							<input type="text" class="form-control" id="RegionDescription" name="RegionDescription" placeholder="Region Description" [(ngModel)]="objRegion.RegionDescription" readonly />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer clearfix">
+				<div class="pull-right">
+					<button class="btn btn-primary" (click)="gotoRegionEdit()">Edit</button>
+					<a class="btn btn-primary" (click)="gotoRegion()">Cancel</a>
+				</div>
+				<div class="pull-left">
+					<a class="btn btn-danger" (click)="deleteRegion(objRegion.RegionID)">Delete</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

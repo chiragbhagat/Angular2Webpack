@@ -1,5 +1,5 @@
 <div class="grid grid-pad">
-	<h1>Products List</h1>
+	<h1>Categories List</h1>
 
 	<!-- Error Messages -->
 	<div class="alert alert-danger" *ngIf="errorMessage">
@@ -15,7 +15,7 @@
                 <div class="col-md-4 text-left">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group">
-                            <a class="btn-sm" routerLink="/Products/add" routerLinkActive="active" title="Add Products"><i class="glyphicon glyphicon-plus"></i></a>
+                            <a class="btn-sm" routerLink="/Categories/add" routerLinkActive="active" title="Add Categories"><i class="glyphicon glyphicon-plus"></i></a>
                             <!--a class="btn-sm" title="Delete List(s)"><i class="glyphicon glyphicon-remove"></i></a-->
                             <a class="btn-sm" title="Refresh List" (click)="onRefresh()"><i class="glyphicon glyphicon-refresh"></i></a>
                             <!--a class="btn-sm" title="Export to Excel"><i class="glyphicon glyphicon-list-alt"></i></a-->
@@ -35,36 +35,22 @@
 		<!-- Grid Column Header -->
 		<tr>
 			<th>Action</th>
-			<th>Product Id</th>
-			<th>Product Name</th>
-			<th>Supplier Id</th>
 			<th>Category Id</th>
-			<th>Quantityperunit</th>
-			<th>Unitprice</th>
-			<th>Unitsinstock</th>
-			<th>Unitsonorder</th>
-			<th>Reorderlevel</th>
-			<th>Discontinued</th>
+			<th>Category Name</th>
+			<th>Description</th>
 
 		</tr>
 
 		<!-- Grid Rows -->
 		<tbody>
-			<tr *ngFor="let item of ProductsList">
+			<tr *ngFor="let item of CategoriesList">
 				<td style="width: 100px">
 					<a (click)="onSelect(item)">Edit</a>
-					<a (click)="deleteProducts(item.ProductID)">Delete</a>
+					<a (click)="deleteCategories(item.CategoryID)">Delete</a>
 				</td>
-				<td class="text-right">{{item.ProductID}}</td>
-				<td class="text-left">{{item.ProductName}}</td>
-				<td class="text-right">{{item.SupplierID}}</td>
 				<td class="text-right">{{item.CategoryID}}</td>
-				<td class="text-left">{{item.QuantityPerUnit}}</td>
-				<td class="text-right">{{item.UnitPrice}}</td>
-				<td class="text-right">{{item.UnitsInStock}}</td>
-				<td class="text-right">{{item.UnitsOnOrder}}</td>
-				<td class="text-right">{{item.ReorderLevel}}</td>
-				<td class="text-left">{{item.Discontinued}}</td>
+				<td class="text-left">{{item.CategoryName}}</td>
+				<td class="text-left">{{item.Description}}</td>
 
 			</tr>
 		</tbody>

@@ -1,3 +1,14 @@
+/* ------------------------------------------------------------
+ * Created By	: CodeBhagat v1.0
+ * Created Date	: 12/13/2016
+ * Service Name	: ProductsService
+ * Purpose		: This service contains methods to perform Data Access Layer operations using Http/Web API calls
+ * Instructions	: You may modify code inside code generation template and re-generate the code.
+ * Copyright	: Copyright 2014-2016 CodeBhagat LLC. All Rights Reserved.
+ * Restrictions	: The generated code is for evaluation purpose only. Use of this generated code requires valid softare license.
+ * ------------------------------------------------------------
+*/
+
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
@@ -88,7 +99,7 @@ export class ProductsService {
     }
 
     deleteProducts(id:string) : Observable<Object>{
-		let url = `${this.baseUrl}api/Region/${id}`;
+		let url = `${this.baseUrl}api/Products/${id}`;
  
 		return this._http.delete(url)
             .map(res => res)
@@ -105,7 +116,7 @@ export class ProductsService {
         return headers;
     }
 
-    private extractData(res: Response | any) {
+    private extractData(res: Response) {
         let body: any;
 
         // check if empty, before call json
@@ -126,7 +137,7 @@ export class ProductsService {
 		}
 		console.error(errMsg);
 		return Observable.throw(errMsg);
-    }
+	}
 }
 
 /*

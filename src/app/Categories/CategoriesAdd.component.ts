@@ -1,9 +1,9 @@
 /* ------------------------------------------------------------
  * Created By	: CodeBhagat v1.0
  * Created Date	: 12/13/2016
- * Component	: ProductsAddComponent
- * Purpose		: This component allows to create new Products record and save changes.
- * Dependency	: ProductsService
+ * Component	: CategoriesAddComponent
+ * Purpose		: This component allows to create new Categories record and save changes.
+ * Dependency	: CategoriesService
  * Copyright	: Copyright 2014-2016 CodeBhagat LLC. All Rights Reserved.
  * Restrictions	: The generated code is for evaluation purpose only. Use of this generated code requires valid softare license.
  * ------------------------------------------------------------
@@ -17,16 +17,14 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import { ToastsManager }  from 'ng2-toastr';
 
-import { ProductsData, ProductsService } from './Products.service';
-import { SuppliersData, SuppliersService } from '../Suppliers/Suppliers.service';
-import { CategoriesData, CategoriesService } from '../Categories/Categories.service';
+import { CategoriesData, CategoriesService } from './Categories.service';
 
 
 @Component({
-	selector: 'my-Products-add',
-	templateUrl: './ProductsAdd.component.html',
-	providers: [ProductsService
-		, SuppliersService, CategoriesService
+	selector: 'my-Categories-add',
+	templateUrl: './CategoriesAdd.component.html',
+	providers: [CategoriesService
+		
 		],
 	animations: [
     trigger('routeAnimation', [
@@ -53,7 +51,7 @@ import { CategoriesData, CategoriesService } from '../Categories/Categories.serv
   ]
 })
 
-export class ProductsAddComponent implements OnInit {
+export class CategoriesAddComponent implements OnInit {
 	@HostBinding('@routeAnimation') get routeAnimation() {
 		return true;
 	}
@@ -66,58 +64,44 @@ export class ProductsAddComponent implements OnInit {
 	//  return 'absolute';
 	// }
 
-	objProducts: ProductsData;
+	objCategories: CategoriesData;
 	errorMessage: string;
 	messages: string[];
 
 	// Lookup Arrays
 	
-	SuppliersList: SuppliersData[];
-	CategoriesList: CategoriesData[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
 	private toastr: ToastsManager,
-    private ProductsService: ProductsService
-			, private  SuppliersService:  SuppliersService
-			, private  CategoriesService:  CategoriesService
+    private CategoriesService: CategoriesService
 
 	) {
-		this.objProducts = new ProductsData();
+		this.objCategories = new CategoriesData();
 	}
 
 	ngOnInit() {
-		this.objProducts = new ProductsData();
+		this.objCategories = new CategoriesData();
 		this.getLookups();
 	}
 
-	addProducts() {
-		this.ProductsService.addProductsData(this.objProducts)
-			.subscribe(record => this.router.navigate(['/Products']),
+	addCategories() {
+		this.CategoriesService.addCategoriesData(this.objCategories)
+			.subscribe(record => this.router.navigate(['/Categories']),
 			error =>  this.errorMessage = 'There was an error while adding record. Error: ' + <any>error,
-			() => { console.log('Products record added successfully...'); }
+			() => { console.log('Categories record added successfully...'); }
 		);
 	}
 
-	gotoProducts() {
-		let Id = this.objProducts ? this.objProducts.ProductID : null;
-		this.router.navigate(['/Products']);
+	gotoCategories() {
+		let Id = this.objCategories ? this.objCategories.CategoryID : null;
+		this.router.navigate(['/Categories']);
 	}
 
-	// Get Lookup List for Suppliers
-    getSuppliers() {
-		this.SuppliersService.getAll().subscribe(records => this.SuppliersList=records);
-    }
-	// Get Lookup List for Categories
-    getCategories() {
-		this.CategoriesService.getAll().subscribe(records => this.CategoriesList=records);
-    }
 
 	getLookups() {
 
-        this.getSuppliers();
-        this.getCategories();
 	}
 
 	log(msg: string) {

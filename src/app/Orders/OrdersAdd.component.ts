@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------
  * Created By	: CodeBhagat v1.0
- * Created Date	: 12/8/2016
+ * Created Date	: 12/13/2016
  * Component	: OrdersAddComponent
  * Purpose		: This component allows to create new Orders record and save changes.
  * Dependency	: OrdersService
@@ -15,6 +15,7 @@ import { Component, EventEmitter, Input, Output, OnInit,
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
+import { ToastsManager }  from 'ng2-toastr';
 
 import { OrdersData, OrdersService } from './Orders.service';
 import { ShippersData, ShippersService } from '../Shippers/Shippers.service';
@@ -77,6 +78,7 @@ export class OrdersAddComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+	private toastr: ToastsManager,
     private OrdersService: OrdersService
 			, private  ShippersService:  ShippersService
 			, private  EmployeesService:  EmployeesService

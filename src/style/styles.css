@@ -37,6 +37,14 @@ button:disabled {
   cursor: auto;
 }
 
+@media (min-width: 1200px)
+{
+  .container {
+      width: 100%;
+      padding-left: 0px;
+      padding-right: 0px;
+  }
+}
 /* Navigation link styles */
 
 nav a {
@@ -154,6 +162,10 @@ nav a.router-link-active {
   padding-right: 20px;
 }
 
+.form-group {
+    margin-bottom: 5px;
+}
+
 .panel-body {
     padding: 5px;
 }
@@ -163,7 +175,6 @@ caption {
   padding-bottom: 0px;
   color: black;
 }
-
 
 /*
 Copyright 2016 Google Inc. All Rights Reserved.

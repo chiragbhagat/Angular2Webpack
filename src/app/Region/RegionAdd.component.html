@@ -1,0 +1,46 @@
+<h2>Add Region</h2>
+<div class="alert alert-danger" *ngIf="errorMessage">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<strong>Error!</strong> {{errorMessage}}
+</div>
+
+<div *ngIf="false">Is Form Valid: {{ form.valid}}</div>
+<div *ngIf="false">Form Value: {{ form.value | json}}</div>
+
+<div class="container">
+	<form #form="ngForm">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Region Add</div>
+			<div class="panel-body">
+				<div class="form-horizontal">
+					<div class="row has-error">
+						<span id="error" class="help-block"></span>
+					</div>
+					
+					<div class="form-group" [class.has-error]="RegionID.touched && RegionID.invalid" >
+						<label for="RegionID" class="col-xs-3 col-sm-2 control-label">Region Id:<font color="red">*&nbsp;</font></label>
+						<div class="col-xs-9 col-sm-10">
+							<input #RegionID="ngModel" name="RegionID" type="text" class="form-control" 
+									placeholder="Region Id" [(ngModel)]="objRegion.RegionID" required />
+							<div style="color:red" *ngIf="RegionID.touched && RegionID.invalid">Region Id is required.</div>
+						</div>
+					</div>
+					<div class="form-group" [class.has-error]="RegionDescription.touched && RegionDescription.invalid" >
+						<label for="RegionDescription" class="col-xs-3 col-sm-2 control-label">Region Description:<font color="red">*&nbsp;</font></label>
+						<div class="col-xs-9 col-sm-10">
+							<input #RegionDescription="ngModel" name="RegionDescription" type="text" class="form-control" 
+									placeholder="Region Description" [(ngModel)]="objRegion.RegionDescription" required />
+							<div style="color:red" *ngIf="RegionDescription.touched && RegionDescription.invalid">Region Description is required.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer clearfix">
+				<div class="pull-right">
+					<button class="btn btn-primary" (click)="addRegion()" [disabled]="form.invalid">Save</button>
+					<a class="btn btn-primary" (click)="gotoRegion()">Cancel</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

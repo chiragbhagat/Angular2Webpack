@@ -1,9 +1,9 @@
 /* ------------------------------------------------------------
  * Created By	: CodeBhagat v1.0
  * Created Date	: 12/13/2016
- * Component	: ProductsListComponent
+ * Component	: RegionListComponent
  * Purpose		: This component retrieve paged data and performs paging operations
- * Dependency	: ProductsService
+ * Dependency	: RegionService
  * Copyright	: Copyright 2014-2016 CodeBhagat LLC. All Rights Reserved.
  * Restrictions	: The generated code is for evaluation purpose only. Use of this generated code requires valid softare license.
  * ------------------------------------------------------------
@@ -16,23 +16,23 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ToastsManager }  from 'ng2-toastr';
 
 import myGlobals = require('../globals');
-import { ProductsData, ProductsService } from './Products.service';
+import { RegionData, RegionService } from './Region.service';
 
 @Component({
-	selector: 'my-Products',
-	templateUrl: './ProductsList.component.html',
-	providers: [ProductsService]
+	selector: 'my-Region',
+	templateUrl: './RegionList.component.html',
+	providers: [RegionService]
 })
 
-export class ProductsListComponent implements OnInit {
-	ProductsList: ProductsData[];
-	newProducts: ProductsData;
-	selectedProducts: ProductsData;
+export class RegionListComponent implements OnInit {
+	RegionList: RegionData[];
+	newRegion: RegionData;
+	selectedRegion: RegionData;
 	errorMessage: string;
 	messages: string[];
 	showAdd: boolean;
 
-	sortExpression: string = "ProductID";
+	sortExpression: string = "RegionID";
 	filterExpression: string = "";
 	pageIndex: number = 1;
 	pageSize: number = 10;
@@ -44,22 +44,22 @@ export class ProductsListComponent implements OnInit {
     private selectedId: string;
 
 	constructor(
-		private ProductsService: ProductsService,
+		private RegionService: RegionService,
 		private route: ActivatedRoute,
 		private router: Router,
 		private toastr: ToastsManager
 	) {
-		this.newProducts = new ProductsData();
+		this.newRegion = new RegionData();
 		this.pageSize = myGlobals.pageSize;
 	}
 
 	ngOnInit() {
-		//this.ProductsService.getAll().subscribe(record => this.ProductsList=record);
-		this.getProductsByPaging();
+		//this.RegionService.getAll().subscribe(record => this.RegionList=record);
+		this.getRegionByPaging();
 		this.isFirstPage = true;
 
 		/*
-		this.ProductsList = this.route.params
+		this.RegionList = this.route.params
 			.switchMap((params: Params) => {
 				this.selectedId = +params['id'];
 				return this.service.getAll();
@@ -68,17 +68,17 @@ export class ProductsListComponent implements OnInit {
 	}
 
 	// Get all records
-	public getProducts() {
-		this.ProductsService.getAll()
-			.subscribe(data => this.ProductsList = data,
+	public getRegion() {
+		this.RegionService.getAll()
+			.subscribe(data => this.RegionList = data,
 		error =>  this.errorMessage = 'There was an error while retrieving records. Error: ' + <any>error);
 	}
 
 	// Get records by paging
-	getProductsByPaging() {
-		this.ProductsService.getAllByPaging(this.filterExpression, this.pageIndex, this.pageSize)
+	getRegionByPaging() {
+		this.RegionService.getAllByPaging(this.filterExpression, this.pageIndex, this.pageSize)
 			.subscribe(data => {
-				this.ProductsList=data.ProductsList;
+				this.RegionList=data.RegionList;
 				this.rowsCount=data.RowsCount;
 				this.pageCount= Math.ceil(this.rowsCount / this.pageSize);
 				if (this.pageIndex == 1)
@@ -95,23 +95,23 @@ export class ProductsListComponent implements OnInit {
 	}
 
 	// Adds new record
-	addProducts() {
-		this.ProductsService.addProductsData(this.newProducts).subscribe(record => console.log(record));
-		this.getProducts();
+	addRegion() {
+		this.RegionService.addRegionData(this.newRegion).subscribe(record => console.log(record));
+		this.getRegion();
 	}
 
 	// Updates existing record
-	updateProducts() {
-		this.ProductsService.updateProductsData(this.selectedProducts).subscribe(record => console.log(record));
-		this.getProducts();
+	updateRegion() {
+		this.RegionService.updateRegionData(this.selectedRegion).subscribe(record => console.log(record));
+		this.getRegion();
 	}
 
 	// Deletes record with specified id
-	deleteProducts(id: string) {
-		if (window.confirm('Are you sure you want to delete this Products?') == true)
+	deleteRegion(id: string) {
+		if (window.confirm('Are you sure you want to delete this Region?') == true)
 		{
-			this.ProductsService.deleteProducts(id)
-			.subscribe(data => this.getProducts(),
+			this.RegionService.deleteRegion(id)
+			.subscribe(data => this.getRegion(),
 			error =>  this.errorMessage = 'There was an error while deleting record. Error: ' + <any>error);
 		}
 	}
@@ -119,14 +119,14 @@ export class ProductsListComponent implements OnInit {
 	// Go to First Page
 	onFirstPage() {
 		this.pageIndex = 1;
-		this.getProductsByPaging();
+		this.getRegionByPaging();
 	}
 
 	// Go to Previous Page
 	onPreviousPage() {
 		if (this.pageIndex > 1) {
 			this.pageIndex = this.pageIndex - 1;
-			this.getProductsByPaging();
+			this.getRegionByPaging();
 		}
 	}
 
@@ -139,29 +139,29 @@ export class ProductsListComponent implements OnInit {
 	onNextPage() {
 		if (this.pageIndex < this.pageCount) {
 			this.pageIndex = this.pageIndex + 1;
-			this.getProductsByPaging();
+			this.getRegionByPaging();
 		}
 	}
 
 	// Go to Last Page
 	onLastPage() {
 		this.pageIndex = this.pageCount;
-		this.getProductsByPaging();
+		this.getRegionByPaging();
 	}
 
 	// On Edit - Go to Edit page
-	onSelect(item: ProductsData) {
-		this.router.navigate(['/Products', item.ProductID]);
+	onSelect(item: RegionData) {
+		this.router.navigate(['/Region', item.RegionID]);
 	}
 
 	// On Details - Go to Details page
-	onSelectDetails(item: ProductsData) {
-		this.router.navigate(['/Products/Details', item.ProductID]);
+	onSelectDetails(item: RegionData) {
+		this.router.navigate(['/Region/Details', item.RegionID]);
 	}
 
 	// Set record as selected
-	SelectProducts(item: ProductsData) {
-		this.selectedProducts = item;
+	SelectRegion(item: RegionData) {
+		this.selectedRegion = item;
 	}
 
 	// Submits form

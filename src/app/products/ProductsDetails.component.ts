@@ -4,6 +4,8 @@ import { Component, OnInit, HostBinding, EventEmitter, Input, Output,
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
+import { ToastsManager }  from 'ng2-toastr';
+
 import { ProductsData, ProductsService }  from './Products.service';
 
 import { SuppliersData, SuppliersService } from '../Suppliers/Suppliers.service';
@@ -61,7 +63,10 @@ export class ProductsDetailsComponent implements OnInit {
 	SuppliersList: SuppliersData[];
 	CategoriesList: CategoriesData[];
 
-	constructor(private route: ActivatedRoute, private router: Router, private ProductsService: ProductsService
+	constructor(private route: ActivatedRoute, 
+		private router: Router, 
+		private toastr: ToastsManager,
+		private ProductsService: ProductsService
 			, private  SuppliersService:  SuppliersService
 			, private  CategoriesService:  CategoriesService
 

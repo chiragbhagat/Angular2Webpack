@@ -1,9 +1,9 @@
 /* ------------------------------------------------------------
  * Created By	: CodeBhagat v1.0
  * Created Date	: 12/13/2016
- * Component	: ProductsAddComponent
- * Purpose		: This component allows to create new Products record and save changes.
- * Dependency	: ProductsService
+ * Component	: RegionAddComponent
+ * Purpose		: This component allows to create new Region record and save changes.
+ * Dependency	: RegionService
  * Copyright	: Copyright 2014-2016 CodeBhagat LLC. All Rights Reserved.
  * Restrictions	: The generated code is for evaluation purpose only. Use of this generated code requires valid softare license.
  * ------------------------------------------------------------
@@ -17,16 +17,14 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import { ToastsManager }  from 'ng2-toastr';
 
-import { ProductsData, ProductsService } from './Products.service';
-import { SuppliersData, SuppliersService } from '../Suppliers/Suppliers.service';
-import { CategoriesData, CategoriesService } from '../Categories/Categories.service';
+import { RegionData, RegionService } from './Region.service';
 
 
 @Component({
-	selector: 'my-Products-add',
-	templateUrl: './ProductsAdd.component.html',
-	providers: [ProductsService
-		, SuppliersService, CategoriesService
+	selector: 'my-Region-add',
+	templateUrl: './RegionAdd.component.html',
+	providers: [RegionService
+		
 		],
 	animations: [
     trigger('routeAnimation', [
@@ -53,7 +51,7 @@ import { CategoriesData, CategoriesService } from '../Categories/Categories.serv
   ]
 })
 
-export class ProductsAddComponent implements OnInit {
+export class RegionAddComponent implements OnInit {
 	@HostBinding('@routeAnimation') get routeAnimation() {
 		return true;
 	}
@@ -66,58 +64,44 @@ export class ProductsAddComponent implements OnInit {
 	//  return 'absolute';
 	// }
 
-	objProducts: ProductsData;
+	objRegion: RegionData;
 	errorMessage: string;
 	messages: string[];
 
 	// Lookup Arrays
 	
-	SuppliersList: SuppliersData[];
-	CategoriesList: CategoriesData[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
 	private toastr: ToastsManager,
-    private ProductsService: ProductsService
-			, private  SuppliersService:  SuppliersService
-			, private  CategoriesService:  CategoriesService
+    private RegionService: RegionService
 
 	) {
-		this.objProducts = new ProductsData();
+		this.objRegion = new RegionData();
 	}
 
 	ngOnInit() {
-		this.objProducts = new ProductsData();
+		this.objRegion = new RegionData();
 		this.getLookups();
 	}
 
-	addProducts() {
-		this.ProductsService.addProductsData(this.objProducts)
-			.subscribe(record => this.router.navigate(['/Products']),
+	addRegion() {
+		this.RegionService.addRegionData(this.objRegion)
+			.subscribe(record => this.router.navigate(['/Region']),
 			error =>  this.errorMessage = 'There was an error while adding record. Error: ' + <any>error,
-			() => { console.log('Products record added successfully...'); }
+			() => { console.log('Region record added successfully...'); }
 		);
 	}
 
-	gotoProducts() {
-		let Id = this.objProducts ? this.objProducts.ProductID : null;
-		this.router.navigate(['/Products']);
+	gotoRegion() {
+		let Id = this.objRegion ? this.objRegion.RegionID : null;
+		this.router.navigate(['/Region']);
 	}
 
-	// Get Lookup List for Suppliers
-    getSuppliers() {
-		this.SuppliersService.getAll().subscribe(records => this.SuppliersList=records);
-    }
-	// Get Lookup List for Categories
-    getCategories() {
-		this.CategoriesService.getAll().subscribe(records => this.CategoriesList=records);
-    }
 
 	getLookups() {
 
-        this.getSuppliers();
-        this.getCategories();
 	}
 
 	log(msg: string) {

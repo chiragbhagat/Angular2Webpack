@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------
  * Created By	: CodeBhagat v1.0
- * Created Date	: 12/8/2016
+ * Created Date	: 12/13/2016
  * Component	: OrdersListComponent
  * Purpose		: This component retrieve paged data and performs paging operations
  * Dependency	: OrdersService
@@ -13,6 +13,8 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ToastsManager }  from 'ng2-toastr';
+
 import myGlobals = require('../globals');
 import { OrdersData, OrdersService } from './Orders.service';
 
@@ -44,7 +46,8 @@ export class OrdersListComponent implements OnInit {
 	constructor(
 		private OrdersService: OrdersService,
 		private route: ActivatedRoute,
-		private router: Router
+		private router: Router,
+		private toastr: ToastsManager
 	) {
 		this.newOrders = new OrdersData();
 		this.pageSize = myGlobals.pageSize;
