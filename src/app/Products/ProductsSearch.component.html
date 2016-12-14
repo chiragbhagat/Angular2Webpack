@@ -1,0 +1,50 @@
+<div class="container">
+	<form #form="ngForm">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Search Products</div>
+			<div class="panel-body">
+				<div class="form-horizontal">
+					<div class="row has-error">
+						<span id="error" class="help-block"></span>
+					</div>
+					<div class="form-group" [class.has-error]="ProductName.touched && ProductName.invalid" >
+						<label for="ProductName" class="col-xs-3 col-sm-2 control-label">Product Name:<font color="red">*&nbsp;</font></label>
+						<div class="col-xs-9 col-sm-10">
+							<input #ProductName="ngModel" name="ProductName" type="text" class="form-control" 
+									placeholder="Product Name" [(ngModel)]="objProducts.ProductName" required />
+							<div style="color:red" *ngIf="ProductName.touched && ProductName.invalid">Product Name is required.</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Supplier Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<select id="SupplierID" name="SupplierID" class="form-control" [(ngModel)]="objProducts.SupplierID">
+								<option [value]="objProducts.SupplierID" *ngIf="!objProducts.SupplierID">SELECT</option>
+								<option *ngFor="let item of SuppliersList" [value]="item.SupplierID">
+									{{item.CompanyName}}
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 col-sm-2 control-label">Category Id:</label>
+						<div class="col-xs-9 col-sm-10">
+							<select id="CategoryID" name="CategoryID" class="form-control" [(ngModel)]="objProducts.CategoryID">
+								<option [value]="objProducts.CategoryID" *ngIf="!objProducts.CategoryID">SELECT</option>
+								<option *ngFor="let item of CategoriesList" [value]="item.CategoryID">
+									{{item.CategoryName}}
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer clearfix">
+				<div class="pull-right">
+					<button class="btn btn-primary">Search</button>
+					<a class="btn btn-primary">Clear</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
