@@ -68,9 +68,9 @@ export class ProductsSearchComponent implements OnInit {
 	objProducts: ProductsData;
 	errorMessage: string;
 	messages: string[];
+	filterExpression: string;
 
 	// Lookup Arrays
-	
 	SuppliersList: SuppliersData[];
 	CategoriesList: CategoriesData[];
 
@@ -82,50 +82,28 @@ export class ProductsSearchComponent implements OnInit {
 			, private  CategoriesService:  CategoriesService
 
 	) {
-		// this.id = parseInt(params.get('id'));
 		this.objProducts = new ProductsData();
 	}
 
 	ngOnInit() {
-		this.route.params
-		// (+) converts string 'id' to a number
-		// .switchMap((params: Params) => this.ProductsService.getByID(+params['id']))
-		.switchMap((params: Params) => this.ProductsService.getByID(params['id']))
-		.subscribe((item: ProductsData) => this.objProducts = item);
 		this.getLookups();
 	}
 
-	updateProducts() {
-		this.ProductsService.updateProductsData(this.objProducts)
-			.subscribe(record => this.router.navigate(['/Products']),
-				error =>  this.errorMessage = 'There was an error while updating record. Error: ' + <any>error,
-				() => { 
-					this.toastr.success('Products record updated successfully...');
-					console.log('Products record updated successfully...'); 
-				}
-			);
-	}
-  
-	deleteProducts(id: string) {
-		if (window.confirm('Are you sure you want to delete this Products?') == true) 
+	searchProducts() {
+		if (this.objProducts.ProductName)
 		{
-			this.ProductsService.deleteProducts(this.objProducts.ProductID.toString())
-			.subscribe(record => this.router.navigate(['/Products']),
-				error =>  this.errorMessage = 'There was an error while deleting record. Error: ' + <any>error,
-				() => { 
-					this.toastr.success('Products record deleted successfully...');
-					console.log('Products record deleted successfully...'); 
-				}
-			);
+			this.filterExpression += "ProductName like '%" + this.objProducts.ProductName + "%'";
+		}
+		if (this.objProducts.CategoryID)
+		{
+			this.filterExpression += "CategoryID = " + this.objProducts.CategoryID;
+		}
+		if (this.objProducts.SupplierID)
+		{
+			this.filterExpression += "SupplierID = " + this.objProducts.SupplierID;
 		}
 	}
-
-	gotoProducts() {
-		let Id = this.objProducts ? this.objProducts.ProductID : null;
-		this.toastr.success('Back to Products List...');
-		this.router.navigate(['/Products']);
-	}
-
+  
 	// Get Lookup List for Suppliers
     getSuppliers() {
 		this.SuppliersService.getAll().subscribe(records => this.SuppliersList=records);

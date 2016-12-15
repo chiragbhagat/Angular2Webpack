@@ -17,6 +17,7 @@ import { ToastsManager }  from 'ng2-toastr';
 
 import myGlobals = require('../globals');
 import { ProductsData, ProductsService } from './Products.service';
+import { ProductsSearchComponent } from './ProductsSearch.component';
 
 @Component({
 	selector: 'my-Products',
@@ -72,6 +73,16 @@ export class ProductsListComponent implements OnInit {
 		this.ProductsService.getAll()
 			.subscribe(data => this.ProductsList = data,
 		error =>  this.errorMessage = 'There was an error while retrieving records. Error: ' + <any>error);
+	}
+
+	// On Search CLick on ProductsSearch Component
+	onSearch() {
+	// 1. Update this.filterExpression
+	// this.filterExpression = productSearchComponent.filterExpression;
+
+	// 2. call getProductsByPaging method that will refresh the data
+	this.pageIndex = 1;
+	this.getProductsByPaging();
 	}
 
 	// Get records by paging
