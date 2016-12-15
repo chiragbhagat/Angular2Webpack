@@ -15,10 +15,8 @@ import { Component, OnInit, HostBinding, EventEmitter, Input, Output,
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
-import { ToastsManager }  from 'ng2-toastr';
 
 import { ProductsData, ProductsService }  from './Products.service';
-
 import { SuppliersData, SuppliersService } from '../Suppliers/Suppliers.service';
 import { CategoriesData, CategoriesService } from '../Categories/Categories.service';
 
@@ -76,7 +74,6 @@ export class ProductsSearchComponent implements OnInit {
 
 	constructor(private route: ActivatedRoute, 
 		private router: Router,
-		private toastr: ToastsManager,
 		private ProductsService: ProductsService
 			, private  SuppliersService:  SuppliersService
 			, private  CategoriesService:  CategoriesService
@@ -86,10 +83,12 @@ export class ProductsSearchComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		// Getting lookup data for Categories and Suppliers
 		this.getLookups();
 	}
 
 	searchProducts() {
+		// Updating filterExpression on Search button click
 		if (this.objProducts.ProductName)
 		{
 			this.filterExpression += "ProductName like '%" + this.objProducts.ProductName + "%'";
@@ -114,7 +113,6 @@ export class ProductsSearchComponent implements OnInit {
     }
 
 	getLookups() {
-
         this.getSuppliers();
         this.getCategories();
 	}
