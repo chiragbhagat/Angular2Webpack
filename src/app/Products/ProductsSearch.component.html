@@ -11,15 +11,14 @@
 						<label for="ProductName" class="col-xs-3 col-sm-2 control-label">Product Name:<font color="red">*&nbsp;</font></label>
 						<div class="col-xs-9 col-sm-10">
 							<input #ProductName="ngModel" name="ProductName" type="text" class="form-control" 
-									placeholder="Product Name" [(ngModel)]="objProducts.ProductName" required />
-							<div style="color:red" *ngIf="ProductName.touched && ProductName.invalid">Product Name is required.</div>
+									placeholder="Product Name" [(ngModel)]="objProducts.ProductName" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-xs-3 col-sm-2 control-label">Supplier Id:</label>
 						<div class="col-xs-9 col-sm-10">
 							<select id="SupplierID" name="SupplierID" class="form-control" [(ngModel)]="objProducts.SupplierID">
-								<option [value]="objProducts.SupplierID" *ngIf="!objProducts.SupplierID">SELECT</option>
+								<option value="0" >SELECT</option>
 								<option *ngFor="let item of SuppliersList" [value]="item.SupplierID">
 									{{item.CompanyName}}
 								</option>
@@ -30,7 +29,7 @@
 						<label class="col-xs-3 col-sm-2 control-label">Category Id:</label>
 						<div class="col-xs-9 col-sm-10">
 							<select id="CategoryID" name="CategoryID" class="form-control" [(ngModel)]="objProducts.CategoryID">
-								<option [value]="objProducts.CategoryID" *ngIf="!objProducts.CategoryID">SELECT</option>
+								<option  value="0">SELECT</option>
 								<option *ngFor="let item of CategoriesList" [value]="item.CategoryID">
 									{{item.CategoryName}}
 								</option>
@@ -42,7 +41,7 @@
 			<div class="panel-footer clearfix">
 				<div class="pull-right">
 					<button class="btn btn-primary" (click)="searchProducts()">Search</button>
-					<a class="btn btn-primary">Clear</a>
+					<button class="btn btn-primary" (click)="clearCriteria()" >Clear</button>
 				</div>
 			</div>
 		</div>

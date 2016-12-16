@@ -9,7 +9,7 @@
  * ------------------------------------------------------------
 */
 
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, ViewChild } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -17,8 +17,29 @@ import { ToastsManager }  from 'ng2-toastr';
 
 import myGlobals = require('../globals');
 import { ProductsData, ProductsService } from './Products.service';
-import { ProductsSearchComponent } from './ProductsSearch.component';
-
+import { ProductsSearchComponent }  from './ProductsSearch.component';
+/*
+let createEmptyProductSearchCriteria = (): IProductSearchCriteria => {
+	return { productName: null, categoryId: 0, supplierId: 0 };
+};
+*/
+/*let buildProductSearchExpression = (criteria: IProductSearchCriteria):string => {
+	let results: string[] = [];
+	if(criteria.productName){
+		results.push(`ProductName like '%${criteria.productName}%'`);
+	}
+	if(criteria.categoryId){
+		results.push(`CategoryID=${criteria.categoryId}"`);
+	}
+	if(criteria.supplierId){
+		results.push(`SupplierID=${criteria.supplierId}"`);
+	}
+	if(results.length > 0){
+		return  encodeURIComponent(results.join(" and "));
+	}
+	return  '';;
+};
+*/
 @Component({
 	selector: 'my-Products',
 	templateUrl: './ProductsList.component.html',
@@ -32,9 +53,11 @@ export class ProductsListComponent implements OnInit {
 	errorMessage: string;
 	messages: string[];
 	showAdd: boolean;
+	@ViewChild(ProductsSearchComponent) filterComponent: ProductsSearchComponent;
 
 	sortExpression: string = "ProductID";
 	filterExpression: string = "";
+	//filterModel: IProductSearchCriteria = createEmptyProductSearchCriteria();
 	pageIndex: number = 1;
 	pageSize: number = 10;
 	endRowIndex: number;
@@ -56,9 +79,33 @@ export class ProductsListComponent implements OnInit {
 
 	ngOnInit() {
 		//this.ProductsService.getAll().subscribe(record => this.ProductsList=record);
-		this.getProductsByPaging();
+		// this.getProductsByPaging();
 		this.isFirstPage = true;
+		this.route.params.subscribe(params => {
+			/*let tmp_num:number = +params["cat"];
+			if(tmp_num){ 
+				this.filterModel.categoryId = tmp_num; 
+			}else {
+				this.filterModel.categoryId = 0;
+			}
+			tmp_num = +params["sup"];
+			if(tmp_num){ 
+				this.filterModel.supplierId = tmp_num; 
+			}else {
+				this.filterModel.supplierId = 0;
+			}
 
+			if(params["name"]){
+				this.filterModel.productName = params["name"]; 
+			}else {
+				this.filterModel.productName = '';
+			}
+			
+			this.filterExpression = buildProductSearchExpression(this.filterModel);
+			*/
+			this.pageIndex = 1;
+			this.getProductsByPaging();
+		});
 		/*
 		this.ProductsList = this.route.params
 			.switchMap((params: Params) => {
@@ -68,6 +115,27 @@ export class ProductsListComponent implements OnInit {
 		*/
 	}
 
+	//onSearch(criteria: IProductSearchCriteria){
+		// this.filterModel = criteria;
+		// this.filterExpression = buildProductSearchExpression(this.filterModel);
+		// this.pageIndex = 1;
+		// this.getProductsByPaging();
+		/*if(!criteria.categoryId) {
+			criteria.categoryId = 0;
+		}
+
+		if(!criteria.supplierId) {
+			criteria.supplierId = 0;
+		}
+		if(!criteria.productName){
+			criteria.productName = '';
+		}
+		this.router.navigate(["Products", criteria.categoryId
+			, criteria.supplierId, criteria.productName ]);
+			*/
+		
+	//}
+
 	// Get all records
 	public getProducts() {
 		this.ProductsService.getAll()
@@ -76,9 +144,9 @@ export class ProductsListComponent implements OnInit {
 	}
 
 	// On Search CLick on ProductsSearch Component
-	onSearch() {
+	onSearch(searchText: string) {
 	// 1. Update this.filterExpression
-	// this.filterExpression = productSearchComponent.filterExpression;
+	this.filterExpression = searchText;
 
 	// 2. call getProductsByPaging method that will refresh the data
 	this.pageIndex = 1;

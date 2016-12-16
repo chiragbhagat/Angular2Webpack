@@ -17,6 +17,7 @@ import { ProductsListComponent } from './ProductsList.component';
 import { ProductsAddComponent } from './ProductsAdd.component';
 import { ProductsEditComponent } from './ProductsEdit.component';
 import { ProductsDetailsComponent } from './ProductsDetails.component';
+import { ProductsSearchComponent } from './ProductsSearch.component';
 
 import { ProductsRoutingModule } from './Products-routing.module';
 
@@ -30,7 +31,8 @@ import { ProductsRoutingModule } from './Products-routing.module';
     ProductsListComponent,
     ProductsEditComponent,
     ProductsAddComponent,
-	ProductsDetailsComponent
+	  ProductsDetailsComponent,
+    ProductsSearchComponent,
   ],
   providers: [
     ProductsService

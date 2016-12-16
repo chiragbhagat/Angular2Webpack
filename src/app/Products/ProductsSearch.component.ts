@@ -9,10 +9,13 @@
  * ------------------------------------------------------------
 */
 
-import { Component, OnInit, HostBinding, EventEmitter, Input, Output,
+import {
+	Component, OnInit, HostBinding, EventEmitter, Input, Output,
          trigger, transition, animate,
-         style, state } from '@angular/core';
+	style, state
+} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 
@@ -21,6 +24,7 @@ import { SuppliersData, SuppliersService } from '../Suppliers/Suppliers.service'
 import { CategoriesData, CategoriesService } from '../Categories/Categories.service';
 
 @Component({
+	selector: "products-search",
   templateUrl: './ProductsSearch.component.html',
   providers: [ProductsService
 	, SuppliersService, CategoriesService
@@ -51,6 +55,12 @@ import { CategoriesData, CategoriesService } from '../Categories/Categories.serv
 })
 
 export class ProductsSearchComponent implements OnInit {
+	@Input() productName: string | null = null;
+	@Input() categoryId: number = 0;
+	@Input() supplierId: number = 0;
+	//@Output() search = new EventEmitter<IProductSearchCriteria>();
+	@Output() filterCriteria = new EventEmitter<string>();
+
 	@HostBinding('@routeAnimation') get routeAnimation() {
 		return true;
 	}
@@ -67,8 +77,10 @@ export class ProductsSearchComponent implements OnInit {
 	errorMessage: string;
 	messages: string[];
 	filterExpression: string;
+	
 
 	// Lookup Arrays
+
 	SuppliersList: SuppliersData[];
 	CategoriesList: CategoriesData[];
 
@@ -79,28 +91,69 @@ export class ProductsSearchComponent implements OnInit {
 			, private  CategoriesService:  CategoriesService
 
 	) {
+		// this.id = parseInt(params.get('id'));
 		this.objProducts = new ProductsData();
+		//this.objProducts.ProductName = "";
+		this.objProducts.CategoryID = 0;
+		this.objProducts.SupplierID = 0;
+		this.filterCriteria = new EventEmitter<string>();
+    //componentHandler.upgradeDom();
 	}
 
 	ngOnInit() {
 		// Getting lookup data for Categories and Suppliers
 		this.getLookups();
 	}
-
+	doSearch() {
+		/*this.search.emit({
+			productName: this.productName,
+			categoryId: this.categoryId,
+			supplierId: this.supplierId
+		});
+		*/
+	}
+	clearCriteria() {
+		this.objProducts.ProductName = "";
+		this.objProducts.CategoryID = 0;
+		this.objProducts.SupplierID = 0;
+		//this.productName = "";	
+		//productNameControl.reset();
+		//this.categoryId = 0;
+		//this.supplierId = 0;
+		/*this.search.emit({
+			productName: this.productName,
+			categoryId: this.categoryId,
+			supplierId: this.supplierId
+		});*/
+		this.filterExpression = "";
+		event.preventDefault();
+    console.log(`Filter Changed: ${this.filterExpression}`);
+		this.filterCriteria.emit(this.filterExpression);
+	}
 	searchProducts() {
 		// Updating filterExpression on Search button click
+		this.filterExpression = "";
 		if (this.objProducts.ProductName)
 		{
 			this.filterExpression += "ProductName like '%" + this.objProducts.ProductName + "%'";
 		}
-		if (this.objProducts.CategoryID)
+		if (this.objProducts.CategoryID  && this.objProducts.CategoryID != "0")
 		{
-			this.filterExpression += "CategoryID = " + this.objProducts.CategoryID;
+			if (this.filterExpression.length > 0)
+				this.filterExpression = this.filterExpression + " AND CategoryID = " + this.objProducts.CategoryID;
+			else
+				this.filterExpression = "CategoryID = " + this.objProducts.CategoryID;
 		}
-		if (this.objProducts.SupplierID)
+		if (this.objProducts.SupplierID && this.objProducts.SupplierID != "0")
 		{
-			this.filterExpression += "SupplierID = " + this.objProducts.SupplierID;
+			if (this.filterExpression.length > 0)
+				this.filterExpression = this.filterExpression + " AND SupplierID = " + this.objProducts.SupplierID;
+			else
+				this.filterExpression = "SupplierID = " + this.objProducts.SupplierID;
 		}
+		event.preventDefault();
+    console.log(`Filter Changed: ${this.filterExpression}`);
+		this.filterCriteria.emit(this.filterExpression);
 	}
   
 	// Get Lookup List for Suppliers

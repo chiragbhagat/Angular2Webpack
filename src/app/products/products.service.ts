@@ -49,7 +49,8 @@ export class ProductsService {
     }
 
     getAllBy(filterExpression: string) : Observable<ProductsData[]> {
-		let url = this.baseUrl + 'api/Products?filterExpression=${filterExpression}';
+        filterExpression = filterExpression || ''; 
+		let url = this.baseUrl + `api/Products?filterExpression=${filterExpression}`;
 
         return this._http
 			.get(url, {headers: this.getHeaders()})
@@ -59,7 +60,8 @@ export class ProductsService {
     }
 
     getAllByPaging(filterExpression: string, pageIndex: number, pageSize: number) : Observable<any> {
-		let url = this.baseUrl + `api/Products?filterExpression=&sortExpression=ProductID&pageIndex=${pageIndex}&pageSize=${pageSize}`;
+        filterExpression = filterExpression || ''; 
+		let url = this.baseUrl + `api/Products?filterExpression=${filterExpression}&sortExpression=ProductID&pageIndex=${pageIndex}&pageSize=${pageSize}`;
 
         return this._http
             .get(url, {headers: this.getHeaders()})
