@@ -40,9 +40,9 @@ import { CategoriesData, CategoriesService } from '../Categories/Categories.serv
       transition(':enter', [
         style({
           opacity: 0,
-          transform: 'translateX(-100%)'
+          transform: 'translateX(100%)'
         }),
-        animate('0.2s ease-in')
+        animate('0.9s ease-in')
       ]),
       transition(':leave', [
         animate('0.5s ease-out', style({
@@ -78,9 +78,7 @@ export class ProductsSearchComponent implements OnInit {
 	messages: string[];
 	filterExpression: string;
 	
-
 	// Lookup Arrays
-
 	SuppliersList: SuppliersData[];
 	CategoriesList: CategoriesData[];
 
@@ -89,11 +87,8 @@ export class ProductsSearchComponent implements OnInit {
 		private ProductsService: ProductsService
 			, private  SuppliersService:  SuppliersService
 			, private  CategoriesService:  CategoriesService
-
 	) {
-		// this.id = parseInt(params.get('id'));
 		this.objProducts = new ProductsData();
-		//this.objProducts.ProductName = "";
 		this.objProducts.CategoryID = 0;
 		this.objProducts.SupplierID = 0;
 		this.filterCriteria = new EventEmitter<string>();
@@ -104,32 +99,17 @@ export class ProductsSearchComponent implements OnInit {
 		// Getting lookup data for Categories and Suppliers
 		this.getLookups();
 	}
-	doSearch() {
-		/*this.search.emit({
-			productName: this.productName,
-			categoryId: this.categoryId,
-			supplierId: this.supplierId
-		});
-		*/
-	}
+
 	clearCriteria() {
 		this.objProducts.ProductName = "";
 		this.objProducts.CategoryID = 0;
 		this.objProducts.SupplierID = 0;
-		//this.productName = "";	
-		//productNameControl.reset();
-		//this.categoryId = 0;
-		//this.supplierId = 0;
-		/*this.search.emit({
-			productName: this.productName,
-			categoryId: this.categoryId,
-			supplierId: this.supplierId
-		});*/
 		this.filterExpression = "";
 		event.preventDefault();
     console.log(`Filter Changed: ${this.filterExpression}`);
 		this.filterCriteria.emit(this.filterExpression);
 	}
+
 	searchProducts() {
 		// Updating filterExpression on Search button click
 		this.filterExpression = "";
@@ -137,14 +117,14 @@ export class ProductsSearchComponent implements OnInit {
 		{
 			this.filterExpression += "ProductName like '%" + this.objProducts.ProductName + "%'";
 		}
-		if (this.objProducts.CategoryID  && this.objProducts.CategoryID != "0")
+		if (this.objProducts.CategoryID  && this.objProducts.CategoryID.toString() != "0")
 		{
 			if (this.filterExpression.length > 0)
 				this.filterExpression = this.filterExpression + " AND CategoryID = " + this.objProducts.CategoryID;
 			else
 				this.filterExpression = "CategoryID = " + this.objProducts.CategoryID;
 		}
-		if (this.objProducts.SupplierID && this.objProducts.SupplierID != "0")
+		if (this.objProducts.SupplierID && this.objProducts.SupplierID.toString() != "0")
 		{
 			if (this.filterExpression.length > 0)
 				this.filterExpression = this.filterExpression + " AND SupplierID = " + this.objProducts.SupplierID;

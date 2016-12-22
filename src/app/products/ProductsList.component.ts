@@ -9,7 +9,9 @@
  * ------------------------------------------------------------
 */
 
-import { Component, EventEmitter, Input, Output, OnInit, ViewChild } from '@angular/core';
+import { Component, HostBinding, EventEmitter, Input, Output, OnInit, ViewChild,
+	trigger, transition, animate,
+	style, state } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -18,35 +20,45 @@ import { ToastsManager }  from 'ng2-toastr';
 import myGlobals = require('../globals');
 import { ProductsData, ProductsService } from './Products.service';
 import { ProductsSearchComponent }  from './ProductsSearch.component';
-/*
-let createEmptyProductSearchCriteria = (): IProductSearchCriteria => {
-	return { productName: null, categoryId: 0, supplierId: 0 };
-};
-*/
-/*let buildProductSearchExpression = (criteria: IProductSearchCriteria):string => {
-	let results: string[] = [];
-	if(criteria.productName){
-		results.push(`ProductName like '%${criteria.productName}%'`);
-	}
-	if(criteria.categoryId){
-		results.push(`CategoryID=${criteria.categoryId}"`);
-	}
-	if(criteria.supplierId){
-		results.push(`SupplierID=${criteria.supplierId}"`);
-	}
-	if(results.length > 0){
-		return  encodeURIComponent(results.join(" and "));
-	}
-	return  '';;
-};
-*/
+
 @Component({
 	selector: 'my-Products',
 	templateUrl: './ProductsList.component.html',
-	providers: [ProductsService]
+	providers: [ProductsService],
+	animations: [
+    trigger('routeAnimation', [
+      state('*',
+        style({
+          opacity: 1,
+          transform: 'translateX(0)'
+        })
+      ),
+      transition(':enter', [
+        style({
+          opacity: 0,
+          transform: 'translateX(-100%)'
+        }),
+        animate('0.4s ease-in')
+      ]),
+      transition(':leave', [
+        animate('0.7s ease-out', style({
+          opacity: 0,
+          transform: 'translateY(100%)'
+        }))
+      ])
+    ])
+  ]
 })
 
 export class ProductsListComponent implements OnInit {
+	@HostBinding('@routeAnimation') get routeAnimation() {
+		return true;
+	}
+
+	@HostBinding('style.display') get display() {
+		return 'block';
+	}
+
 	ProductsList: ProductsData[];
 	newProducts: ProductsData;
 	selectedProducts: ProductsData;
@@ -57,7 +69,6 @@ export class ProductsListComponent implements OnInit {
 
 	sortExpression: string = "ProductID";
 	filterExpression: string = "";
-	//filterModel: IProductSearchCriteria = createEmptyProductSearchCriteria();
 	pageIndex: number = 1;
 	pageSize: number = 10;
 	endRowIndex: number;
@@ -81,31 +92,14 @@ export class ProductsListComponent implements OnInit {
 		//this.ProductsService.getAll().subscribe(record => this.ProductsList=record);
 		// this.getProductsByPaging();
 		this.isFirstPage = true;
-		this.route.params.subscribe(params => {
-			/*let tmp_num:number = +params["cat"];
-			if(tmp_num){ 
-				this.filterModel.categoryId = tmp_num; 
-			}else {
-				this.filterModel.categoryId = 0;
-			}
-			tmp_num = +params["sup"];
-			if(tmp_num){ 
-				this.filterModel.supplierId = tmp_num; 
-			}else {
-				this.filterModel.supplierId = 0;
-			}
+		this.pageIndex = 1;
+		this.getProductsByPaging();
 
-			if(params["name"]){
-				this.filterModel.productName = params["name"]; 
-			}else {
-				this.filterModel.productName = '';
-			}
-			
-			this.filterExpression = buildProductSearchExpression(this.filterModel);
-			*/
+		/*this.route.params.subscribe(params => {
 			this.pageIndex = 1;
 			this.getProductsByPaging();
 		});
+		*/
 		/*
 		this.ProductsList = this.route.params
 			.switchMap((params: Params) => {
@@ -114,27 +108,6 @@ export class ProductsListComponent implements OnInit {
 			});
 		*/
 	}
-
-	//onSearch(criteria: IProductSearchCriteria){
-		// this.filterModel = criteria;
-		// this.filterExpression = buildProductSearchExpression(this.filterModel);
-		// this.pageIndex = 1;
-		// this.getProductsByPaging();
-		/*if(!criteria.categoryId) {
-			criteria.categoryId = 0;
-		}
-
-		if(!criteria.supplierId) {
-			criteria.supplierId = 0;
-		}
-		if(!criteria.productName){
-			criteria.productName = '';
-		}
-		this.router.navigate(["Products", criteria.categoryId
-			, criteria.supplierId, criteria.productName ]);
-			*/
-		
-	//}
 
 	// Get all records
 	public getProducts() {

@@ -11,6 +11,7 @@
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule }    from '@angular/forms';
+import { DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { ProductsService } from './Products.service';
 import { ProductsListComponent } from './ProductsList.component';
@@ -18,6 +19,7 @@ import { ProductsAddComponent } from './ProductsAdd.component';
 import { ProductsEditComponent } from './ProductsEdit.component';
 import { ProductsDetailsComponent } from './ProductsDetails.component';
 import { ProductsSearchComponent } from './ProductsSearch.component';
+import { DatePickerDropDownComponent } from '../shared/datepicker-dropdown.component';
 
 import { ProductsRoutingModule } from './Products-routing.module';
 
@@ -25,9 +27,11 @@ import { ProductsRoutingModule } from './Products-routing.module';
   imports: [
     CommonModule,
     FormsModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    DatepickerModule
   ],
   declarations: [
+    //DatePickerDropDownComponent,
     ProductsListComponent,
     ProductsEditComponent,
     ProductsAddComponent,

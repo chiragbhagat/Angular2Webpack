@@ -28,6 +28,12 @@ import { EmployeesData, EmployeesService } from '../Employees/Employees.service'
   providers: [OrdersService
 	, ShippersService, EmployeesService
 	],
+	styles: [`
+	.calendar-container {
+		position: absolute;
+    left: 260px;
+    padding: 9px;
+	}`],
   animations: [
     trigger('routeAnimation', [
       state('*',

@@ -45,6 +45,7 @@
 					<div class="form-group" [class.has-error]="OrderDate.touched && OrderDate.invalid" >
 						<label for="OrderDate" class="col-xs-3 col-sm-2 control-label">Order Date:</label>
 						<div class="col-xs-9 col-sm-10">
+							<span class="glyphicon glyphicon-calendar calendar-container"></span>
 							<datepicker-dropdown #OrderDate="ngModel" [control]="OrderDate"
 							                     [(ngModel)]="objOrders.OrderDate" name="OrderDate" [required]="true"></datepicker-dropdown>
 							<div style="color: red" *ngIf="OrderDate.touched && OrderDate.errors && OrderDate.errors.required">Order Date is required.</div>
@@ -58,6 +59,7 @@
 					<div class="form-group" [class.has-error]="RequiredDate.touched && RequiredDate.invalid" >
 						<label for="RequiredDate" class="col-xs-3 col-sm-2 control-label">Required Date:</label>
 						<div class="col-xs-9 col-sm-10">
+							<span class="glyphicon glyphicon-calendar calendar-container"></span>
 							<datepicker-dropdown #RequiredDate="ngModel" [control]="RequiredDate"  
 									[(ngModel)]="objOrders.RequiredDate" name="RequiredDate" [required]="true" ></datepicker-dropdown>
 							<div style="color:red" *ngIf="RequiredDate.touched && RequiredDate.errors && RequiredDate.errors.required">Required Date is required.</div>
@@ -71,6 +73,7 @@
 					<div class="form-group" [class.has-error]="ShippedDate.touched && ShippedDate.invalid" >
 						<label for="ShippedDate" class="col-xs-3 col-sm-2 control-label">Shipped Date:</label>
 						<div class="col-xs-9 col-sm-10">
+							<span class="glyphicon glyphicon-calendar calendar-container"></span>
 							<datepicker-dropdown #ShippedDate="ngModel" [control]="ShippedDate"  
 									[(ngModel)]="objOrders.ShippedDate" name="ShippedDate" [required]="true" ></datepicker-dropdown>
 							<div style="color:red" *ngIf="ShippedDate.touched && ShippedDate.errors && ShippedDate.errors.required">Shipped Date is required.</div>

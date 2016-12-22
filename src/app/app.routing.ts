@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
 import { AuthGuard }          from './auth-guard.service';
 import { PreloadSelectedModules } from './selective-preload-strategy';
+//import { PageNotFoundComponent } from './pagenotfound.component';
 
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './home/about.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
     loadChildren: 'app/admin/admin.module#AdminModule',
     canLoad: [AuthGuard]
   },
+  //{ path: '**', pathMatch: 'full', component: PageNotFoundComponent },
  //{
     //path: 'crisis-center',
     //component: CrisisCenterModule,

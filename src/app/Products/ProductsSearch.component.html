@@ -29,7 +29,7 @@
 						<label class="col-xs-3 col-sm-2 control-label">Category Id:</label>
 						<div class="col-xs-9 col-sm-10">
 							<select id="CategoryID" name="CategoryID" class="form-control" [(ngModel)]="objProducts.CategoryID">
-								<option  value="0">SELECT</option>
+								<option value="0">SELECT</option>
 								<option *ngFor="let item of CategoriesList" [value]="item.CategoryID">
 									{{item.CategoryName}}
 								</option>

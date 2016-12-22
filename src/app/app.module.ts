@@ -29,7 +29,7 @@ import { RegionModule }         from './Region/Region.module';
 import { OrdersModule }         from './Orders/Orders.module';
 import { AdminModule }         from './admin/admin.module';
 import { DialogService }        from './dialog.service';
-
+//import { PageNotFoundComponent } from './pagenotfound.component';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
@@ -55,6 +55,7 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
+    //PageNotFoundComponent,
     // HomeComponent,
     // AboutComponent,
     // ContactComponent
